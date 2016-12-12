@@ -1,7 +1,7 @@
-# BatailleNavale
+﻿# BatailleNavale
 Repo pour le TP en groupe
 
-Cecilia,
+Cecilia, Clemence
 ## Index
 - [Utiliser git](#git-use)
 
