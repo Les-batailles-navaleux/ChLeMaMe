@@ -2,8 +2,14 @@ package batailleNavale;
 // test
 
 public class Coordonnee {
+	private int ligne;
+	private int colonne;
 
-	public Coordonnee() {
+	public Coordonnee(int ligne, int colonne) {
+		
+	}
+	
+	public Coordonnee(String s) {
 		// TODO Auto-generated constructor stub
 	}
 
