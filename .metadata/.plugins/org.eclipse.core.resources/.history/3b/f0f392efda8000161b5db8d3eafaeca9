@@ -1,0 +1,155 @@
+package tp2;
+import java.util.Scanner;
+public class TP2 {
+	
+	public static void exercice1a() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir deux nombres");
+		int val1 = sc.nextInt();
+		int val2 = sc.nextInt();
+		int valMax;
+		if (val1 > val2) {
+			valMax = val1;
+		}
+		else {
+			valMax = val2;
+		}
+		System.out.println("La valeur maximum est " + valMax);
+	}
+	
+	public static void exercice1b() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir trois nombres : ");
+		int val1 = sc.nextInt();
+		int val2 = sc.nextInt();
+		int val3 = sc.nextInt();
+		int valMax;
+		if (val1 > val2) {
+			valMax = val1;
+			if (val3 > val1) {
+				valMax = val3;
+			}
+		}
+		else {
+			valMax = val2;
+			if (val3 > val2) {
+				valMax = val3;
+			}
+		}
+		System.out.println("La valeur maximale est : " + valMax);
+	}
+
+	public static void exercice1c() {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir quatre nombres : ");
+		int val1 = sc.nextInt();
+		int val2 = sc.nextInt();
+		int val3 = sc.nextInt();
+		int val4 = sc.nextInt();
+		int valMax;
+		if (val1 > val2) {
+			// Si la valeur 1 est plus grande
+			valMax = val1;
+			if (val3 > val1) {
+				// Si valeur 3 est plus grande
+				valMax = val3;
+				if (val4 > val3) {
+					// Si valeur 4 est plus grande
+					valMax = val4;
+				}
+			}
+		}
+		else {
+			// Si valeur 2 est plus grande
+			valMax = val2;
+			if (val3 > val2) {
+				// Si valeur 3 est plus grande
+				valMax = val3;
+				if (val4 > val3) {
+					// Si valeur 4 est plus grande
+					valMax = val4;
+				}
+			}
+		}
+		System.out.println("Valeur max : " + valMax);
+	}
+
+	public static void exercice1d() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir 2 nombres");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		if (a > b) {
+			System.out.println(a + " " + b);
+		}
+		else {
+			System.out.println(b + " " + a);
+		}
+	}
+	
+	public static void exercice1e() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir 3 nombres");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+		int first;
+		int middle;
+		int last;
+		if ((a > b) && (a > c)) {
+			first = a;
+			if (b > c) {
+				middle = b;
+				last = c;
+			}
+			else {
+				middle = c;
+				last = b;
+			}
+		}
+		else if ((b > a) && (b > c)) {
+			first = b;
+			if (a > c) {
+				middle = a;
+				last = c;
+			}
+			else {
+				middle = c;
+				last = a;
+			}
+		}
+		else {
+			first = c;
+			if (a > b) {
+				middle = a;
+				last = b;
+			}
+			else {
+				middle = b;
+				last = a;
+			}
+		}
+		System.out.println(first + " " + middle + " " + last);
+	}
+	
+	public static void exercice2a() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir 2 entiers");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		for (int i = a; i > a*b; i = i+b) {
+			System.out.println(a);
+		}
+	}
+	public static void main(String[] args) {
+		// exercice1a();
+		// exercice1b();
+		// exercice1c();
+		// exercice1d();
+		// exercice1e();
+		exercice2a();
+
+	}
+
+}

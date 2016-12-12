@@ -1,0 +1,45 @@
+package tp3;
+import java.util.Scanner;
+public class TP3 {
+
+	public TP3() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void exercice1() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir une chaine de caracteres");
+		String myString = sc.next();
+		System.out.println(myString);
+		String reverseString = new StringBuffer(myString).reverse().toString();
+		System.out.println(reverseString);
+	}
+	public static void exercice2() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir un nombre entier en binaire");
+		String binaryNumber = sc.next();
+		int currentVal = 0;
+		int decimalNumber = 0; // Var avec resultat
+		int stringLen = binaryNumber.length();
+		int charInt = Integer.parseInt(binaryNumber); // Convertir chaine en int
+		for (int i = 1; i < binaryNumber.length() ; i++) {
+			String currentChar = binaryNumber.substring(stringLen - 1, stringLen);
+			int currentInt = Integer.parseInt(currentChar);
+			// if (currentChar) {
+			decimalNumber = 0;
+				System.out.println(currentInt);
+				// stringLen = stringLen - 1;
+				// System.out.println(i);
+				int test = 2^i
+				currentVal = currentInt * i;
+				// multiplier currentChar par i et additionner les valeurs
+			// }
+		}
+		System.out.println(decimalNumber);
+	}
+	public static void main(String[] args) { 
+		// exercice1();
+		exercice2();
+	}
+
+}

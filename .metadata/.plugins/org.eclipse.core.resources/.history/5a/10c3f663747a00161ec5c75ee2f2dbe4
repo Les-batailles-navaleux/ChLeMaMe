@@ -1,0 +1,16 @@
+package monPremierPackage;
+
+public class MaClasse {
+
+	public MaClasse() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int i = 0;
+		System.out.println("Coucou DCISS !!!!");
+		System.out.println(i * 2 + 3);
+	}
+
+}

@@ -1,0 +1,10 @@
+package mesStrings;
+
+public class MaStringBuffer{
+	 private char[] lesCaracteres;
+	 private int n; // nombre de caractères effectifs
+
+	 public String toString(){
+	 return new String(lesCaracteres, 0, n);
+	 }
+	}

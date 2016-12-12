@@ -1,0 +1,21 @@
+package tp3;
+import java.util.Scanner;
+public class TP3 {
+
+	public TP3() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void exercice1() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Saisir une chaine de caracteres");
+		String chaine = sc.next();
+		System.out.println(chaine);
+		new StringBuilder(chaine).reverse().toString();
+
+	}
+	public static void main(String[] args) { 
+		exercice1();
+	}
+
+}

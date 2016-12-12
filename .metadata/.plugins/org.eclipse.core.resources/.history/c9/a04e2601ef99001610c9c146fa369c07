@@ -1,0 +1,18 @@
+package mesStrings;
+
+public class MaStringBuffer{
+	 private char[] lesCaracteres;
+	 private int n; // nombre de caractères effectifs
+	 public MaStringBuffer(int l) {
+		 l = lesCaracteres.length;
+		 lesCaracteres = new char;
+	 }
+
+	 public String toString(){
+	 return new String(lesCaracteres, 0, n);
+	 }
+	 public static void main(String[] args) {
+		 char[] t = {'t', 'e', 's', 't'};        // création d'un tableau sur lequel on va construire une MaString
+	      MaStringBuffer ms = new MaString(t, 0, 4);    // Création d'une MaString à partir du tableau t
+	 }
+}

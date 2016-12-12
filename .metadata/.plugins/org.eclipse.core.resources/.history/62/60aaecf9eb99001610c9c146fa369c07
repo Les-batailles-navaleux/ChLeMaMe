@@ -1,0 +1,10 @@
+package mesStrings;
+
+
+public class MaString {
+	private char[] lesCaracteres;
+	//…
+	public String toString(){
+		return new String(lesCaracteres);
+	}
+}
