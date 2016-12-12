@@ -15,7 +15,7 @@ public class Coordonnee {
 	}
 
 	public String toString() {
-		String coord = ligne + colonne;
+		String coord = "" + ligne + colonne + "";
 		return coord;
 	}
 
