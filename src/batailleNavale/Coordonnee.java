@@ -15,7 +15,7 @@ public class Coordonnee {
 	}
 
 	public String toString() {
-		String coord = "[" + ligne + ", " + colonne + "]";
+		String coord = ligne + colonne;
 		return coord;
 	}
 
@@ -28,11 +28,11 @@ public class Coordonnee {
 	}
 
 	public boolean equals(Object obj) {
-
+		return this == obj;
 	}
 	
 	public boolean voisine(Coordonnee c) {
-		
+		if ( )
 	}
 
 	public static void main(String[] args) {
