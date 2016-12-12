@@ -6,23 +6,25 @@ public class Coordonnee {
 	private int colonne;
 
 	public Coordonnee(int ligne, int colonne) {
-
+		this.ligne = ligne;
+		this.colonne = colonne;
 	}
 
 	public Coordonnee(String s) {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String toString() {
-	
+		String coord = "[" + ligne + ", " + colonne + "]";
+		return coord;
 	}
 
 	public int getLigne() {
-	
+		return ligne;
 	}
 
 	public int getColonne() {
-
+		return colonne;
 	}
 
 	public boolean equals(Object obj) {
