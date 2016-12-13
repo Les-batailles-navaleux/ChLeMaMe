@@ -6,21 +6,32 @@ public class Navire {
 	private Coordonnee[] partiesTouchees;
 	private int nbTouchees;
 
+	
+	/*
+	 *  Constructeur Navire: le navire est placé en fonction de son début, de la gauche vers la droite et du haut vers le bas
+	 *  @param: type Coordonnée: coordonnées de début
+	 *  		int longueur: longueur du bateau
+	 *  		boolean estVertical: indique si le bateau doit etre placé verticalement ou horizontalement
+	 */
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 		this.debut = debut;
-		longueur = 4;
-		// TODO si le navire estVertical
-		Coordonnee fin = new Coordonnee(debut.getColonne(), longueur + 1);
-		this.fin = fin;
-		estVertical = true;
-//		PROBLEME 
 //		if (estVertical) {
-//			longueur = this.fin.getColonne() - this.debut.getColonne();
+//			// -1 car on compte de 0 à n-1, a voir
+//			this.fin = new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne());  
 //		}
-//		else {
-//			longueur = this.fin.getLigne() - this.debut.getLigne();
+//		if(!estVertical){
+//			this.fin = new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1);
 //		}
+//		
+		// la puissance ternaire en 1 ligne .. ou presque
+		this.fin = estVertical ? new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne()) : //  estVertical
+								 new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1);// !estVertical
+		
+		this.partiesTouchees = new Coordonnee[longueur];
+		this.nbTouchees = 0;
 	}
+	
+
 	
 //	public String toString() {
 ////		if (estVertical) {
@@ -30,7 +41,7 @@ public class Navire {
 //	}
 	
 	}
-
+// lequel toString est le bon ?
 	public String toString() {
 		// if (estVertical) {
 		// return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne +
@@ -66,6 +77,7 @@ public class Navire {
 //		}
 		return false;
 	}
+
 
 	public boolean touche(Navire n) {
 		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
@@ -201,6 +213,7 @@ public class Navire {
 		Coordonnee D = new Coordonnee(6,8);
 		Coordonnee E = new Coordonnee(6,9);
 		Coordonnee F = new Coordonnee(3,1);
+
 	}
 
 }
