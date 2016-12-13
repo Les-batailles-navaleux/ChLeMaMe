@@ -32,8 +32,12 @@ public class Coordonnee {
 	}
 	
 	public boolean voisine(Coordonnee c) {
-		if ( )
+		if ((this.ligne == c.ligne -1) && (this.colonne == c.colonne) ) {
+			return true;
+		}
+		return false;
 	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
