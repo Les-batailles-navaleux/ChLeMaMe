@@ -44,6 +44,12 @@ public class Coordonnee {
 	
 	
 	public boolean voisine(Coordonnee c) {
+<<<<<<< HEAD
+		if ((this.ligne == c.ligne -1) && (this.colonne == c.colonne) ) {
+			return true;
+		}
+		return false;
+=======
 	
 		return ((this.ligne == c.ligne-1 && this.colonne == c.colonne)||
 			(this.ligne == c.ligne+1 && this.colonne == c.colonne) ||
@@ -73,7 +79,9 @@ public class Coordonnee {
 		}
 		
 		return res;
+>>>>>>> 45a30addeba014daadc71d0089da12b230be39b0
 	}
+	
 
 	
 	public static void main(String[] args) {
