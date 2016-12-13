@@ -32,7 +32,7 @@ public class Navire {
 			}
 			Coordonnee i = n.debut;
 			while(i.compareTo(n.debut) < 0){
-				
+				//blabla
 			} 
 		}
 	}
