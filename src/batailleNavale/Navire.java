@@ -64,19 +64,68 @@ public class Navire {
 	}
 
 	public boolean recoitTir(Coordonnee c) {
-
+		if (this.contient(c)) {
+			int i = partiesTouchees.length + 1;
+			// on initialise une variable intermediaire a la longueur du tableau + 1
+			partiesTouchees[i] = c;
+			// on ajoute c a la suite du tableau
+			return true;
+		}
+		return false;
 	}
 
 	public boolean estTouche(Coordonnee c) {
-
+		if (this.contient(c)) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean estTouche() {
-
+		// parcourir le tableau partiesTouchees pour trouver this
+		for (int i = 0; i < partiesTouchees.length; i++) { 
+			if ((partiesTouchees[i] == this.debut) || (partiesTouchees[i] == this.fin)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public boolean estCoule() {
-
+		// Le bateau est place a l'horizontale
+		if (this.debut.getLigne() == this.fin.getLigne()) {
+			for (int i = this.debut.getColonne(); i < this.fin.getColonne(); i ++) {
+				// Parcours des colonnes 1 a 1
+				// Creer cordonnee de this pour comparer les deux dans la boucle suivante
+				Coordonnee intermediaire = new Coordonnee(i, this.debut.getColonne());
+				for (int j = 0; j < partiesTouchees.length; j++) {
+					// Comparer coordonnes
+					if (partiesTouchees[j] != intermediaire) {
+						return false;
+					}
+					j = j + 1;
+				}
+				i = i + 1;
+			}
+			return true;
+		}
+		// Le bateau est place a la verticale
+		else if (this.debut.getColonne() == this.fin.getColonne()) {
+			for (int i = this.debut.getLigne(); i < this.fin.getLigne(); i++) {
+				// Parcours desl ignes
+				// Creation coordonnee de this pour comparer les deux dans la boucle suivante
+				Coordonnee intermediaire = new Coordonnee(this.debut.getLigne(), i);
+				for (int j = 0; i < partiesTouchees.length; j++) {
+					// Comparer coordonnees
+					if (partiesTouchees[j] != intermediaire) {
+						return false;
+					}
+					j = j + 1;
+				}
+				i = i + 1;
+			}
+		}
+		return true;
 	}
 
 	public static void main(String[] args) {
