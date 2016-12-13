@@ -5,7 +5,7 @@ public class Navire {
 	private Coordonnee fin;
 	private Coordonnee[] partiesTouchees;
 	private int nbTouchees;
-	
+
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 		this.debut = debut;
 		longueur = 4;
@@ -29,14 +29,24 @@ public class Navire {
 ////		return "Navire("+ debut + ", " + fin - debut + ", "); 
 //	}
 	
+	}
+
+	public String toString() {
+		// if (estVertical) {
+		// return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne +
+		// ", " + " vertical)";
+		// }
+		// return "Navire("+ debut + ", " + fin - debut + ", ");
+	}
+
 	public Coordonnee getDebut() {
 		return debut;
 	}
-	
+
 	public Coordonnee getFin() {
 		return fin;
 	}
-	
+
 	public boolean contient(Coordonnee c) {
 		if ((c.getColonne() - this.debut.getColonne() == 0) || (c.getColonne() - this.fin.getColonne() == 0)) {
 			// c et this sont sur la meme colonne et this est vertical 
@@ -49,32 +59,18 @@ public class Navire {
 				return true;
 			}
 			else {
-				for (int i = this.debut.getLigne(); i < this,fin.getLigne(); i++) {
+//				for (int i = this.debut.getLigne(); i < this,fin.getLigne(); i++) {
 					// DO STUFF
 				}
 			}
-		}
-//		else if ((c.getColonne() - this.fin.getColonne() == 0) && (c.getLigne() - this.fin.getLigne() == 0)) {
-//			return true;
-//		}
-//			else {
-//				return false;
-//			}
 //		}
 		return false;
-//		// On compare les lignes si jamais les colonnes ne sont pas equivalentes
-//		else if (c.getLigne() - this.debut.getLigne() == 0 ) {
-//			// La ligne est la meme ou inferieure
-////			PROBLEME 
-//			if (c.getLigne() - this.fin.getLigne() == 0) {
-//				return true;
-//			}
-//			else {
-//				return false;
-//			}
-////			return false;
-//		}
-//		return false;
+	}
+
+	public boolean touche(Navire n) {
+		if ((n.debut.getLigne() < this.fin.getLigne() && n.fin.getLigne() > this.debut.getLigne() && n.fin.getColonne() + 1 == this.debut.getColonne()) || (n.fin.getLigne() < this.debut.getLigne() && n.debut.getLigne() > this.fin.getLigne() && n.debut.getColonne() + 1 == this.fin.getColonne()) || (n.debut.getColonne() < this.fin.getColonne() && n.fin.getColonne() > this.debut.getColonne() && n.fin.getLigne() + 1 == this.debut.getLigne()) || (n.fin.getColonne() < this.debut.getColonne() && n.debut.getColonne() > this.fin.getColonne() && n.debut.getLigne() + 1 == this.fin.getLigne()))
+			return true;
+		return false;
 	}
 //	public boolean touche(Navire n) {
 //		int lgh = n.fin.getLigne() - n.debut.getLigne();
@@ -91,19 +87,11 @@ public class Navire {
 //		}
 //	}
 
-//	public boolean chevauche(Navire n) {
-//		int lgh = n.fin.getLigne() - n.debut.getLigne();
-//		int lgv = n.fin.getColonne() - n.debut.getColonne();
-//
-//		if (lgh == 0) {
-//			if (!n.fin.equals(this) || n.debut.contient()) {
-//				return false;
-//			}
-//
-//		} else {
-//
-//		}
-//	}
+	public boolean chevauche(Navire n) {
+		if ((n.debut.getLigne() <= this.debut.getLigne() && n.fin.getLigne() >= this.fin.getLigne() && n.debut.getColonne() >= this.debut.getColonne() && n.fin.getColonne() <= this.fin.getColonne())||(n.fin.getLigne() <= this.fin.getLigne() && n.debut.getLigne() >= this.debut.getLigne() && n.fin.getColonne() >= this.fin.getColonne() && n.debut.getColonne() <= this.debut.getColonne()))
+		return false;	
+	}
+
 	public boolean recoitTir(Coordonnee c) {
 		if (this.contient(c)) {
 			int i = partiesTouchees.length + 1;
@@ -114,12 +102,14 @@ public class Navire {
 		}
 		return false;
 	}
+
 	public boolean estTouche(Coordonnee c) {
 		if (this.contient(c)) {
 			return true;
 		}
 		return false;
 	}
+
 	public boolean estTouche() {
 		// parcourir le tableau partiesTouchees pour trouver this
 		for (int i = 0; i < partiesTouchees.length; i++) { 
@@ -128,8 +118,8 @@ public class Navire {
 			}
 		}
 		return false;
-		
 	}
+
 	public boolean estCoule() {
 		// Le bateau est place a l'horizontale
 		if (this.debut.getLigne() == this.fin.getLigne()) {
@@ -166,7 +156,7 @@ public class Navire {
 		}
 		return true;
 	}
-	
+
 	public static void main(String[] args) {
 		Coordonnee Nav1 = new Coordonnee(3, 3);
 //		System.out.println(Nav1.toString());
@@ -194,7 +184,13 @@ public class Navire {
 		System.out.println(test1.contient(touch6)); // true
 		System.out.print(touch7.toString() + " : ");
 		System.out.println(test1.contient(touch7)); // true
-
+		// TODO Auto-generated method stub
+		Coordonnee A = new Coordonnee(2,3);
+		Coordonnee B = new Coordonnee(4,5);
+		Coordonnee C = new Coordonnee(2,3);
+		Coordonnee D = new Coordonnee(6,8);
+		Coordonnee E = new Coordonnee(6,9);
+		Coordonnee F = new Coordonnee(3,1);
 	}
 
 }
