@@ -1,6 +1,6 @@
 package batailleNavale;
 
-public class GrilleNavale  {
+public class GrilleNavale {
 	private Navire[] navires;
 	private int nbNavires;
 	private int taille;
@@ -132,22 +132,46 @@ public class GrilleNavale  {
 	}
 	
 	
-	public boolean recoitTir(Coordonnee c) {
+	public boolean recoitTir(Coordonnee c) { // en cours
+		//if (!(estDansTirsRecus(c)) && ) {
+			
+		//}
 		ajouteDansTirsRecus(c);
-		// en cours
 		return true;
 	}
 	
-	/*
+	
 	public boolean estTouche(Coordonnee c) {
-		
+		recoitTir(c);
+		if ((estDansTirsRecus(c)) && (estTouche(c))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+	
+	
 	public boolean estALEau(Coordonnee c) {
-		
+		recoitTir(c);
+		if ((estDansTirsRecus(c)) && !(estTouche(c))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	public boolean estCoule(Coordonnee c) {
+	
+	
+	//public boolean estCoule(Coordonnee c) {
+		//recoitTir(c);
+		//if ((estDansTirsRecus(c)) && (estTouche(c)) && ()) {
+		//	return true;
+		//} else {
+		//	return false;
+		//}
 		
-	}
+	//}
+	
+	/*
 	public boolean perdu() {
 		
 	}
