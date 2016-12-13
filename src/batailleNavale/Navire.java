@@ -51,10 +51,32 @@ public class Navire {
 		return false;
 	}
 	public boolean touche(Navire n) {
-		
+		int lgh = n.fin.getLigne() - n.debut.getLigne();
+		int lgv = n.fin.getColonne() - n.debut.getColonne();
+
+		if (lgh == 0) {
+			if (n.debut.voisine(this.debut) || n.fin.voisine(this.debut) || n.fin.voisine(this.fin)) {
+				return true;
+			}
+			Coordonnee i = n.debut;
+			while(i.compareTo(n.debut) < 0){
+				//blabla
+			} 
+		}
 	}
+
 	public boolean chevauche(Navire n) {
-		
+		int lgh = n.fin.getLigne() - n.debut.getLigne();
+		int lgv = n.fin.getColonne() - n.debut.getColonne();
+
+		if (lgh == 0) {
+			if (!n.fin.equals(this) || n.debut.contient()) {
+				return false;
+			}
+
+		} else {
+
+		}
 	}
 	public boolean recoitTir(Coordonnee c) {
 		
