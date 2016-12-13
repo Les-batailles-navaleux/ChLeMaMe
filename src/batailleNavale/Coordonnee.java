@@ -32,7 +32,12 @@ public class Coordonnee {
 	}
 	
 	public boolean voisine(Coordonnee c) {
-		if ( )
+		if ()
+	}
+	
+	public int compareTo(Coordonnee c){
+		return ;
+		
 	}
 
 	public static void main(String[] args) {
