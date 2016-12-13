@@ -18,6 +18,25 @@ public class GrilleNavale  { // extends Navire
 		this.taille = taille;
 		this.nbNavires = nbNavires;
 	}
+//	
+//	public GrilleNavale(int taille, int[] taillesNavires) {
+//		this.taille = taille;
+//		this.nbNavires = navires.length;					// nb navire = taille du tableau de navires
+//		this.nbTirsRecus = 0;								// initialisation des tirs reçus à 0
+//		this.tirsRecus = new Coordonnee[(taille*taille)]; 	// Nb de coups possible = taille de la grille
+//				
+//		for (int i = 0; i < this.nbNavires; i++) {
+//			// remplacer true par le placement automatique par la suite...
+//			this.navires[i] = new Navire(new Coordonnee("A1"), taillesNavires[i], true /*placementAuto(taillesNavires);*/); 
+//		}
+//	}
+//	
+//	public GrilleNavale(int taille, int nbNavires) {
+//		this.taille = taille;
+//		this.nbNavires = navires.length;
+//	}
+	
+	
 	
 	public String toString() {
 		for (int i = 0; i < taille; i++) {
