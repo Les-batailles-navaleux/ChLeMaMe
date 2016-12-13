@@ -53,14 +53,24 @@ public class Navire {
 	}
 
 	public boolean touche(Navire n) {
-		if ((n.debut.getLigne() < this.fin.getLigne() && n.fin.getLigne() > this.debut.getLigne() && n.fin.getColonne() + 1 == this.debut.getColonne()) || (n.fin.getLigne() < this.debut.getLigne() && n.debut.getLigne() > this.fin.getLigne() && n.debut.getColonne() + 1 == this.fin.getColonne()) || (n.debut.getColonne() < this.fin.getColonne() && n.fin.getColonne() > this.debut.getColonne() && n.fin.getLigne() + 1 == this.debut.getLigne()) || (n.fin.getColonne() < this.debut.getColonne() && n.debut.getColonne() > this.fin.getColonne() && n.debut.getLigne() + 1 == this.fin.getLigne()))
+		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
+			|| n.debut.getLigne() == this.fin.getLigne() + 1)
+			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
+			||
+			(n.fin.getColonne() + 1 == this.debut.getColonne() 
+			|| n.debut.getColonne() == this.fin.getColonne() + 1)
+			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
 			return true;
 		return false;
 	}
 
 	public boolean chevauche(Navire n) {
-		if ((n.debut.getLigne() <= this.debut.getLigne() && n.fin.getLigne() >= this.fin.getLigne() && n.debut.getColonne() >= this.debut.getColonne() && n.fin.getColonne() <= this.fin.getColonne())||(n.fin.getLigne() <= this.fin.getLigne() && n.debut.getLigne() >= this.debut.getLigne() && n.fin.getColonne() >= this.fin.getColonne() && n.debut.getColonne() <= this.debut.getColonne()))
-		return false;	
+		if ((n.debut.getLigne() <= this.debut.getLigne()) 
+			&& (n.fin.getLigne() >= this.fin.getLigne()) 
+			&& (n.debut.getColonne() >= this.debut.getColonne()) 
+			&& (n.fin.getColonne() <= this.fin.getColonne()))
+			return true;
+		return false;
 	}
 
 	public boolean recoitTir(Coordonnee c) {
