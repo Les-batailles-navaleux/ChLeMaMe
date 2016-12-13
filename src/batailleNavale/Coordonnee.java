@@ -6,6 +6,7 @@ public class Coordonnee {
 	private int colonne;
 
 	public Coordonnee(int ligne, int colonne) {
+
 		if ((ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
 			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
 		}
@@ -15,6 +16,7 @@ public class Coordonnee {
 //		}
 		
 		
+
 		this.ligne = ligne;
 		this.colonne = colonne;
 	}
@@ -38,6 +40,7 @@ public class Coordonnee {
 		// Si la premiere lettre est bien une lettre
 		char c = s.charAt(0);
 		
+
 		if(!Character.isLetter(c)){
 			throw new IllegalArgumentException("Partie alphabetique de la chaine incorrecte: lettre entre A et Z.");
 		} else {
@@ -52,6 +55,7 @@ public class Coordonnee {
 			throw new IllegalArgumentException("Partie numérique de la chaine incorrecte: entier entre 1 et 25.");
 		}
 			
+
 	}
 	
 	
@@ -60,29 +64,28 @@ public class Coordonnee {
 		// Affichage coordonnées colone en lettre + num Ligne
 		char c = (char)(this.colonne + 'A' - 1);
 		String coord = "" + c + ligne + "";
+
 		return coord;
 	}
 
-	
 	public int getLigne() {
 		
 		return (this.ligne);
+
 	}
-	
 
 	public int getColonne() {
 		
 		return (this.colonne);
+
 	}
-	
 
 	public boolean equals(Object obj) {
-		
-		return (this == obj);
+		return this == obj;
 	}
 	
-	
 	public boolean voisine(Coordonnee c) {
+
 	
 		return ((this.ligne == c.ligne-1 && this.colonne == c.colonne)||
 			(this.ligne == c.ligne+1 && this.colonne == c.colonne) ||
@@ -104,15 +107,16 @@ public class Coordonnee {
 		
 		}else{ //if ((this.ligne - c.ligne) > 0) {
 			res = (this.ligne - c.ligne);
-		}
-		
-		return res;
-	}
 
+		}
+		return false;
+	}
 	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+
 		// INPUT(LIGNES,COL) => DISPLAY(COL,LIGNES) !!!
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
@@ -144,6 +148,7 @@ public class Coordonnee {
 		System.out.println("methode estVoisin:");
 		System.out.println(D.voisine(E));
 		System.out.println(E.voisine(F));
+
 	}
 
 }
