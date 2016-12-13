@@ -18,9 +18,9 @@ public class Coordonnee {
 	}
 
 	public String toString() {
-		
+		// Affichage coordonnées colone en lettre + num Ligne
 		String lettre[] = {"","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-		String coord = "" + lettre[ligne] + colonne + "";
+		String coord = "" + lettre[colonne] + ligne + "";
 		return coord;
 	}
 
