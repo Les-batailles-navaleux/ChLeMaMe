@@ -131,16 +131,8 @@ public class Navire {
 				// on parcours le tableau pour trouver s'il y a c
 				if (partiesTouchees[i] == null) {
 					partiesTouchees[i] = c;
-					// si c est a l'indice i du tableau
+					nbTouchees++;
 					return true;
-				}
-				else {
-					if (partiesTouchees[i] != c) {
-						partiesTouchees[i + 1] = c;
-					}
-					else {
-						return false;
-					}
 				}
 			}
 			return true;
@@ -168,47 +160,33 @@ public class Navire {
 	}
 
 	public boolean estCoule() {
-		// Le bateau est place a l'horizontale
 		if (this.debut.getLigne() == this.fin.getLigne()) {
-			for (int i = this.debut.getColonne(); i < this.fin.getColonne(); i ++) {
-				// Parcours des colonnes 1 a 1
-				// Creer cordonnee de this pour comparer les deux dans la boucle suivante
-				Coordonnee intermediaire = new Coordonnee(i, this.debut.getColonne());
-				for (int j = 0; j < partiesTouchees.length; j++) {
-					// Comparer coordonnes
-					if (partiesTouchees[j] != intermediaire) {
-						return false;
-					}
-					j++;
-				}
-				i++;
+			System.out.println("Le bateau est horizontal");
+			// On a marque que la longueur de partiesTouchees est egale a la longueur
+			int longueur = this.fin.getColonne() - this.debut.getColonne() + 1;
+			System.out.println("nombre de touches : " + nbTouchees);
+			System.out.println("longueur du bateau : " + longueur);
+			if (nbTouchees == longueur) {
+				return true;
 			}
-			return true;
+			return false;
 		}
-		// Le bateau est place a la verticale
 		else if (this.debut.getColonne() == this.fin.getColonne()) {
-			for (int i = this.debut.getLigne(); i < this.fin.getLigne(); i++) {
-				// Parcours desl ignes
-				// Creation coordonnee de this pour comparer les deux dans la boucle suivante
-				Coordonnee intermediaire = new Coordonnee(this.debut.getLigne(), i);
-				for (int j = 0; i < partiesTouchees.length; j++) {
-					// Comparer coordonnees
-					if (partiesTouchees[j] != intermediaire) {
-						return false;
-					}
-					j++;
-				}
-				i++;
+			System.out.println("Le bateau est vertical");
+			int longueur = this.fin.getLigne() - this.debut.getLigne() + 1;
+			if (partiesTouchees.length == longueur) {
+				return true;
 			}
+			return false;
 		}
-		return true;
+		return false;
 	}
 
 	public static void main(String[] args) {
 /////////////// TESTS DE CONTIENT
 		Coordonnee Nav1 = new Coordonnee(3,3);
-		Navire test1 = new Navire(Nav1, 3, false);
-		Coordonnee touch7 = new Coordonnee (3,4); // D3
+		Navire test1 = new Navire(Nav1, 9, false);
+		Coordonnee touch7 = new Coordonnee (3,3); // D3
 		if (test1.contient(touch7) != true) {
 			System.out.println("La methode contient a un probleme");
 		}
@@ -219,7 +197,7 @@ public class Navire {
 		}
 		Coordonnee touch8 = new Coordonnee (3,4); // D3
 		Coordonnee touch9 = new Coordonnee (2,1); // B1
-		if (test1.recoitTir(touch8) == true) {
+		if (test1.recoitTir(touch8) != true) {
 			System.out.println("La methode recoitTir a un probleme");
 		}
 		if (test1.recoitTir(touch9) == true) {
@@ -235,6 +213,22 @@ public class Navire {
 			System.out.println("La methode estTouche() a un probleme");
 		}
 /////////////// FIN TESTS DE ESTTOUCHE
+/////////////// TESTS DE ESTCOULE
+//		Coordonnee touch22 = new Coordonnee(3,3);
+//		Coordonnee touch2 = new Coordonnee (3,4);
+//		System.out.println(touch2.toString());
+//		Coordonnee touch3 = new Coordonnee (3,5);
+//		Coordonnee touch4 = new Coordonnee (3,6);
+//		Coordonnee touch5 = new Coordonnee (3,7);
+//		System.out.println(touch3.toString());
+//		test1.recoitTir(touch22);
+//		System.out.println("Le bateau recoit le tir : " + test1.recoitTir(touch22));
+//		test1.recoitTir(touch2);
+//		test1.recoitTir(touch3);
+//		test1.recoitTir(touch4);
+//		test1.recoitTir(touch5);
+//		System.out.println("Coule ? " + test1.estCoule()); // true
+/////////////// FIN TESTS DE ESTCOULE
 	
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
