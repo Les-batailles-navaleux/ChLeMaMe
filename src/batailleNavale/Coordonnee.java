@@ -40,6 +40,7 @@ public class Coordonnee {
 		if(!Character.isLetter(c)){
 			throw new IllegalArgumentException("Partie alphabetique de la chaine incorrecte: lettre entre A et Z.");
 		} else {
+
 			this.colonne = c - 'A' + 1;
 		}
 
