@@ -141,16 +141,16 @@ public class GrilleNavale {
 	
 	
 	public boolean ajouteNavire(Navire n) {
-		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
-		if ((touche(n))||(chevauche(n))||(n.getLigne() > gn.taille)||(n.getColonne() > gn.taille)){
-			return false;
-		}
-		for (int i = 0; i < navires.length; i++) {
-			if (navires[i] != null) {
-			navires[i]= n;
-			break;
-			}
-		}
+//		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
+//		if ((touche(n))||(chevauche(n))||(n.getLigne() > gn.taille)||(n.getColonne() > gn.taille)){
+//			return false;
+//		}
+//		for (int i = 0; i < navires.length; i++) {
+//			if (navires[i] != null) {
+//			navires[i]= n;
+//			break;
+//			}
+//		}
 		return true;
 	}
 	
@@ -244,13 +244,12 @@ public class GrilleNavale {
 	
 	public static void main(String[] args) {
 
-		int []t = {3, 2, 4};
-		GrilleNavale g1 = new GrilleNavale(10, t);
-		GrilleNavale g2 = new GrilleNavale(10, 5);
+		
 
 		int [] tabTaillesNavires = {3, 2, 4};
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
 		g1.toString();
+		
 		Coordonnee c1 = new Coordonnee(3,3);
 		System.out.println("estDansGrille: " + g1.estDansGrille(c1));
 		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));

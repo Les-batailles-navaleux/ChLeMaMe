@@ -1,5 +1,4 @@
 package batailleNavale;
-// test
 
 public class Coordonnee {
 	private int ligne;
@@ -7,13 +6,10 @@ public class Coordonnee {
 
 	public Coordonnee(int ligne, int colonne) {
 
-		if ((ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
+		if ( (ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
 			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
 		}
-//		//check columns inputs
-//		if ((colonne < 0) || (colonne > 25)) {
-//			throw new IllegalArgumentException("Pour les colones, entrez une lettre entre A et Z");
-//		}
+
 		
 		
 
@@ -109,7 +105,7 @@ public class Coordonnee {
 			res = (this.ligne - c.ligne);
 
 		}
-		return false;
+		return res;
 	}
 	
 
