@@ -124,6 +124,14 @@ public class Navire {
 	public boolean recoitTir(Coordonnee c) {
 		if (this.contient(c)) {
 			if (partiesTouchees.length > 0) {
+				for (int i = 0; i < partiesTouchees.length; i++) {
+					// on parcours le tableau parties touchees pour verifier que c n'y est pas
+					if (partiesTouchees[i] == c) {
+						// c est deja dans partiesTouchees
+						return false;
+					}
+					
+				}
 				// on verifie que le tableau ne contient pas deja c
 			}
 			// il faut creer un nouveau tableau a chaque fois
