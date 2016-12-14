@@ -113,9 +113,9 @@ public class GrilleNavale {
 				if (j == 0) { // Affichage chiffre numero des lignes
 					System.out.print(chiffre);
 					chiffre++;
-				} else if (estDansTirsRecus(k)){ // case libre mais touchee
+				} else if (estDansTirsRecus(k) == true){ // case libre mais touchee
 					System.out.print(" O ");
-				} else { //case libre et non touchee
+				} else if (estDansTirsRecus(k) == false){ //case libre et non touchee
 					System.out.print(" . ");
 				}
 
@@ -252,11 +252,11 @@ public class GrilleNavale {
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
 		g1.toString();
 		
-		
 		Coordonnee c1 = new Coordonnee(3,3);
 		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
-		Navire n1 = new Navire(c1, 2, true);
-		// System.out.println("n1 ajouteNavire: " + g1.ajouteNavire(n1));
+		
+		// Navire n1 = new Navire(c1, 2, true);
+		//System.out.println("n1 ajouteNavire: " + g1.ajouteNavire(n1));
 		// g1.toString();
 		// g1.placementAuto(tabTaillesNavires);
 		// g1.toString();
@@ -265,7 +265,7 @@ public class GrilleNavale {
 		System.out.println("ajouteDansTirsRecus: " + g1.ajouteDansTirsRecus(c1));
 		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
 		g1.toString();
-		System.out.println("tabTirsRecus" + g1.tirsRecus[0]);
+		// System.out.println("tabTirsRecus" + g1.tirsRecus[0]);
 		//g1.recoitTir(c1);
 
 	}
