@@ -41,7 +41,12 @@ public class Coordonnee {
 			throw new IllegalArgumentException("Partie alphabetique de la chaine incorrecte: lettre entre A et Z.");
 		} else {
 
+
+			
+
+
 			this.colonne = c - 'A' + 1;
+
 		}
 
 		// test de la partie Numérique
@@ -78,7 +83,8 @@ public class Coordonnee {
 	}
 
 	public boolean equals(Object obj) {
-		return this == obj;
+		return (this.getLigne() == ((Coordonnee)obj).getLigne() && (this.getColonne() == ((Coordonnee)obj).getColonne()));
+		
 	}
 	
 	public boolean voisine(Coordonnee c) {
