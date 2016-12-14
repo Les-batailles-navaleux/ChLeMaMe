@@ -222,7 +222,7 @@ public class Navire {
 		Coordonnee D = new Coordonnee(8,10);
 		Coordonnee E = new Coordonnee(8,7);
 		Coordonnee F = new Coordonnee(3,1);
-		Navire n = new Navire(D, 4, true);
+		Navire n = new Navire(D, 5, true);
 		Navire nav = new Navire(E, 4, false);
 		System.out.println(n.toString());
 		System.out.println(nav.toString());
