@@ -174,7 +174,8 @@ public class GrilleNavale {
 	public boolean recoitTir(Coordonnee c) {
 		boolean b = false;
 		for (int i = 0; i < navires.length; i++) {
-			if ((!(estDansTirsRecus(c))) && (navires[i].estTouche(c))) {
+			// if ((!(estDansTirsRecus(c))) && (navires[i].estTouche(c))) {
+			if ((!(estDansTirsRecus(c))) && (navires[i].recoitTir(c))) {
 				ajouteDansTirsRecus(c);
 				b = true;
 			} else {
