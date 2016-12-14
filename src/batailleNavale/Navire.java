@@ -110,15 +110,24 @@ public class Navire {
 //				//blabla
 //			} 
 //		}
-//	}
 
-	public boolean chevauche(Navire n) {
-		if ((n.debut.getLigne() <= this.debut.getLigne()) 
-			&& (n.fin.getLigne() >= this.fin.getLigne()) 
-			&& (n.debut.getColonne() >= this.debut.getColonne()) 
-			&& (n.fin.getColonne() <= this.fin.getColonne()))
+	public boolean touche(Navire n) {
+		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
+			|| n.debut.getLigne() == this.fin.getLigne() + 1)
+			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
+			||
+			(n.fin.getColonne() + 1 == this.debut.getColonne() 
+			|| n.debut.getColonne() == this.fin.getColonne() + 1)
+			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
 			return true;
 		return false;
+	}
+
+	public boolean chevauche(Navire n) {
+		return ((n.debut.getLigne() <= this.fin.getLigne()) 
+			&& (n.fin.getLigne() >= this.debut.getLigne()) 
+			&& (n.debut.getColonne() <= this.fin.getColonne()) 
+			&& (n.fin.getColonne() >= this.debut.getColonne()));
 	}
 
 	public boolean recoitTir(Coordonnee c) {
@@ -208,16 +217,29 @@ public class Navire {
 //		System.out.print("7 " + touch7.toString() + " : ");
 //		System.out.println(test1.contient(touch7)); // true
 ///////////////////////////////////
-		System.out.println(test1.recoitTir(touch7));
+
+		Coordonnee Nav1 = new Coordonnee(3, 3);
+		Coordonnee nav2 = new Coordonnee(2,3);
+				
+//		System.out.println(Nav1.toString());
+		Navire test1 = new Navire(Nav1, 3, false);
+		Navire t2 = new Navire(nav2, 6, true);
 		
+		//System.out.println("navire: " + test1.toString());
+		//System.out.println("navire: " + t2.toString());		
 		// TODO Auto-generated method stub
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
 		Coordonnee C = new Coordonnee(2,3);
-		Coordonnee D = new Coordonnee(6,8);
-		Coordonnee E = new Coordonnee(6,9);
+		Coordonnee D = new Coordonnee(8,10);
+		Coordonnee E = new Coordonnee(8,7);
 		Coordonnee F = new Coordonnee(3,1);
-
+		Navire n = new Navire(D, 5, true);
+		Navire nav = new Navire(E, 4, false);
+		System.out.println(n.toString());
+		System.out.println(nav.toString());
+		System.out.println(n.chevauche(nav));
+		System.out.println(n.touche(nav));
 
 //		Coordonnee touch1 = new Coordonnee (3,2); // C2
 //		Coordonnee touch2 = new Coordonnee (4,4); // D4
