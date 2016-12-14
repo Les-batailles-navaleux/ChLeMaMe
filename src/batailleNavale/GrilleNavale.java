@@ -141,7 +141,7 @@ public class GrilleNavale {
 	
 	
 	public boolean ajouteNavire(Navire n) {
-<<<<<<< HEAD
+
 		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
 		Coordonnee coordDebN = new Coordonnee(n.getDebut().toString());
 		Coordonnee coordFinN = new Coordonnee(n.getDebut().toString());
@@ -157,18 +157,11 @@ public class GrilleNavale {
 				}
 			}
 		}
-=======
-//		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
-//		if ((touche(n))||(chevauche(n))||(n.getLigne() > gn.taille)||(n.getColonne() > gn.taille)){
-//			return false;
-//		}
-//		for (int i = 0; i < navires.length; i++) {
-//			if (navires[i] != null) {
-//			navires[i]= n;
-//			break;
-//			}
-//		}
->>>>>>> b1415de1e6e8110a6d89cfdc00ad50c65b7b7cea
+
+
+
+
+
 		return true;
 	}
 	
