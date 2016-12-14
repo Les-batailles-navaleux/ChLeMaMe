@@ -18,8 +18,7 @@ public class Navire {
 //		if (estVertical) {
 //			// -1 car on compte de 0 à n-1, a voir
 //			this.fin = new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne());  
-//		}
-//		if(!estVertical){
+//		}else{
 //			this.fin = new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1);
 //		}
 //		
@@ -31,36 +30,29 @@ public class Navire {
 		this.nbTouchees = 0;
 	}
 	
-
-	
-//	public String toString() {
-////		if (estVertical) {
-////			return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne + ", " + " vertical)"; 
-////		}
-////		return "Navire("+ debut + ", " + fin - debut + ", "); 
-//	}
-	
-	
-// lequel toString est le bon ?
 	public String toString() {
-		String s = "";
-		int longueur;
-		s += "Navire (" + this.debut.toString() + ", ";
+
+//		String s1 = "";
+//		String s2 ="";
+
+		String s1 = "Navire (" + this.debut.toString() + ", ";
+		// opérateur ternaire OP
+		String s2 = this.debut.getColonne()==this.fin.getColonne() ?((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)" :
+															((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
 		
-		// si le début et la fin de la colone son la même lettre alors vertical, sinonhorizontal
-		if (this.debut.getColonne()==this.fin.getColonne()) {
-			longueur = (this.fin.getLigne() - this.debut.getLigne()) + 1; // Pareil
-			s += longueur + ", Vertical)";
-		} else {			
-			// +1 pour compenser le longueur -1 incompris du constructeur Navire()
-			System.out.println("on passe dans la condition");
-			longueur = (this.fin.getColonne() - this.debut.getColonne()) + 1;
-			s += longueur + ", Horizontal)";
-		}
-			return s;//		 if (this.estVertical) {
-//		 return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne + ", " + " vertical)";
-//		 }
-//		 return "Navire("+ debut + ", " + fin - debut + ", ");
+//		// si le début et la fin de la colone son la même lettre alors vertical, sinon horizontal
+//		if (this.debut.getColonne() == this.fin.getColonne()) {
+//			// +1 pour compenser le longueur -1 incompris du constructeur Navire()
+//			s2 = ((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)";
+//		} else {			
+//			
+//			s2 = ((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
+//		}
+			return (s1+s2);
+		
+		
+			
+
 	}
 
 	public Coordonnee getDebut() {
@@ -207,11 +199,16 @@ public class Navire {
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
 		Coordonnee C = new Coordonnee(2,3);
-		Coordonnee D = new Coordonnee(6,8);
-		Coordonnee E = new Coordonnee(6,9);
+		Coordonnee D = new Coordonnee("A5");
+		Coordonnee E = new Coordonnee("I7");
 		Coordonnee F = new Coordonnee(3,1);
+		
+		Coordonnee V = new Coordonnee("C2");
 
-
+		
+		System.out.println("A5="+D.toString());
+		System.out.println("I7="+E.toString());
+		System.out.println("4,5 ="+B);
 //		Coordonnee touch1 = new Coordonnee (3,2); // C2
 //		Coordonnee touch2 = new Coordonnee (4,4); // D4
 //		Coordonnee touch3 = new Coordonnee (2,3); // B3
