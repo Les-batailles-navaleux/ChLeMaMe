@@ -50,7 +50,7 @@ public class Navire {
 			s += longueur + ", Vertical)";
 		} else {			
 			// +1 pour compenser le longueur -1 incompris du constructeur Navire()
-			System.out.println("on passe dans la condition");
+			System.out.println("on passe dans la condition"); // TODO decommenter
 			longueur = (this.fin.getColonne() - this.debut.getColonne()) + 1;
 			s += longueur + ", Horizontal)";
 		}
@@ -71,45 +71,45 @@ public class Navire {
 	public boolean contient(Coordonnee c) {
 		if ((c.getColonne() - this.debut.getColonne() == 0) || (c.getColonne() - this.fin.getColonne() == 0)) {
 			// c et this sont sur la meme colonne
-			if (c.getLigne() - this.debut.getLigne() == 0) {
-				// c est EXACTEMENT au debut de this
-				return true;
-			}
-			else if (c.getLigne() - this.fin.getLigne() == 0) {
-				// c est EXACTEMENT a la fin de this
-				return true;
-			}
-			else if ((c.getLigne() > this.debut.getLigne()) && (c.getLigne() < this.fin.getLigne())) {
+			if ((c.getLigne() >= this.debut.getLigne()) && (c.getLigne() <= this.fin.getLigne())) {
+				// Ligne de c est est situee entre debut et fin de ligne de navire (debut et fin inclus)
 				return true;
 			}
 		}
 		else if ((c.getLigne() - this.debut.getLigne() == 0) || (c.getLigne() - this.fin.getLigne() == 0)) {
 //			c et this sont sur la meme ligne
-			if (c.getColonne() - this.debut.getColonne() == 0) {
-				return true;
-			}
-			else if (c.getColonne() - this.fin.getColonne() == 0) {
-				return true;
-			}
-			else if ((c.getColonne() > this.debut.getColonne()) && (c.getColonne() < this.fin.getColonne())) {
-				// Si colonne de c est entre la colonne de debut de this et la colonne de fin
+			if ((c.getColonne() >= this.debut.getColonne()) && (c.getColonne() <= this.fin.getColonne())) {
+				// Colonne de c est est situee entre debut et fin de colonne de navire (debut et fin inclus)
 				return true;
 			}
 		}
 		return false;
 	}
-			// il faut faire un for pour le milieu du navire
-//			return false;
-//		else {
-//			int longueurNavire = this.fin.getColonne() - this.debut.getColonne() + 1; // + 1 car fin est inclus dans le bateau
-//			for (int i = this.debut.getColonne(); i < longueurNavire; i++) {
-//				if (c.getColonne() == i) {
-//					return true;
-//				}
-//				i = i +1;
-//			}
-//		}
 
+//	public boolean touche(Navire n) {
+//		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
+//			|| n.debut.getLigne() == this.fin.getLigne() + 1)
+//			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
+//			||
+//			(n.fin.getColonne() + 1 == this.debut.getColonne() 
+//			|| n.debut.getColonne() == this.fin.getColonne() + 1)
+//			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
+//			return true;
+//		return false;
+//	}
+//	public boolean touche(Navire n) {
+//		int lgh = n.fin.getLigne() - n.debut.getLigne();
+//		int lgv = n.fin.getColonne() - n.debut.getColonne();
+//
+//		if (lgh == 0) {
+//			if (n.debut.voisine(this.debut) || n.fin.voisine(this.debut) || n.fin.voisine(this.fin)) {
+//				return true;
+//			}
+//			Coordonnee i = n.debut;
+//			while(i.compareTo(n.debut) < 0){
+//				//blabla
+//			} 
+//		}
 
 	public boolean touche(Navire n) {
 		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
@@ -132,9 +132,21 @@ public class Navire {
 
 	public boolean recoitTir(Coordonnee c) {
 		if (this.contient(c)) {
+			if (partiesTouchees.length > 0) {
+				for (int i = 0; i < partiesTouchees.length; i++) {
+					// on parcours le tableau parties touchees pour verifier que c n'y est pas
+					if (partiesTouchees[i] == c) {
+						// c est deja dans partiesTouchees
+						return false;
+					}
+					
+				}
+				// on verifie que le tableau ne contient pas deja c
+			}
+			// il faut creer un nouveau tableau a chaque fois
 			int i = partiesTouchees.length + 1;
 			// on initialise une variable intermediaire a la longueur du tableau + 1
-			partiesTouchees[i] = c;
+//			partiesTouchees[i] = c;
 			// on ajoute c a la suite du tableau
 			return true;
 		}
@@ -197,14 +209,15 @@ public class Navire {
 
 	public static void main(String[] args) {
 /////////////// TESTS DE CONTIENT
-//		Coordonnee Nav1 = new Coordonnee(3, 3);
-//		Navire test1 = new Navire(Nav1, 3, false);
-//		Coordonnee touch7 = new Coordonnee (3,5); // C5
+		Coordonnee Nav1 = new Coordonnee(3, 3);
+		Navire test1 = new Navire(Nav1, 3, false);
+		Coordonnee touch7 = new Coordonnee (3,4); // D3
 //		System.out.println("Debut de test1 : " + test1.getDebut());
 //		System.out.println("Fin de test1 : " +test1.getFin());
 //		System.out.print("7 " + touch7.toString() + " : ");
 //		System.out.println(test1.contient(touch7)); // true
 ///////////////////////////////////
+
 		Coordonnee Nav1 = new Coordonnee(3, 3);
 		Coordonnee nav2 = new Coordonnee(2,3);
 				
@@ -213,8 +226,7 @@ public class Navire {
 		Navire t2 = new Navire(nav2, 6, true);
 		
 		//System.out.println("navire: " + test1.toString());
-		//System.out.println("navire: " + t2.toString());
-		
+		//System.out.println("navire: " + t2.toString());		
 		// TODO Auto-generated method stub
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
