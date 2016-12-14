@@ -12,7 +12,8 @@ public class GrilleNavale {
 
 		this.nbNavires = taillesNavires.length;			        // nb navire = taille du tableau de navires
 		this.nbTirsRecus = 0;								                // initialisation des tirs reçus à 0
-		this.tirsRecus = new Coordonnee[(taille*taille)]; 	// Nb de coups possible = taille de la grille
+		tirsRecus = new Coordonnee[0]; // mona: besoin pour methode tirs
+		//this.tirsRecus = new Coordonnee[(taille*taille)]; 	// Nb de coups possible = taille de la grille
 		
 		this.navires = new Navire[this.nbNavires];
 		
@@ -109,30 +110,19 @@ public class GrilleNavale {
 		int chiffre = 1;
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j <= this.taille; j++) {
-				Coordonnee k = new Coordonnee(i, j);
+				Coordonnee k = new Coordonnee(i, j-1);
 				if (j == 0) { // Affichage chiffre numero des lignes
 					System.out.print(chiffre);
 					chiffre++;
-				} else if (estDansTirsRecus(k) == true){ // case libre mais touchee
+				} else if (estTouche(k)){ // case occupee par navire et touché
+					System.out.print(" X ");
+				} else if ((estDansTirsRecus(k)) && (!estTouche(k))){ // case libre mais touchee
 					System.out.print(" O ");
-				} else if (estDansTirsRecus(k) == false){ //case libre et non touchee
+				} else if ((!(estDansTirsRecus(k))) && (!estTouche(k))){ //case libre et non touchee
+					System.out.print(" # ");
+				} else { // case non libre et touchee par un bateau
 					System.out.print(" . ");
 				}
-
-			
-				/*
-				if (estTouche(k)) { // case occupée et touchée
-				System.out.print("#");
-				} else if (contient(k)){  // case occupée mais non touchée
-				System.out.print("X");
-				}
-				else if (estDansTirsRecus(k)){ // case libre + deja tirée
-				System.out.print("O");
-				}
-				else { // libre + aucun tir
-				System.out.print(".");
-				}
-				*/
 			}
 			System.out.println("");
 		}
@@ -142,13 +132,12 @@ public class GrilleNavale {
 	
 	public boolean ajouteNavire(Navire n) {
 		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
-		Coordonnee coordDebN = new Coordonnee(n.getDebut().toString());
-		Coordonnee coordFinN = new Coordonnee(n.getDebut().toString());
-		if (!estDansGrille(coordDebN) || !estDansGrille(coordFinN)) { //si n hors grille
+		
+		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getDebut())) { //si n hors grille
 			return false;
-		} else if ((touche(n))||(chevauche(n))){ //si n touche ou chevauche
+		} /*else if ((touche(n))||(chevauche(n))){ //si n touche ou chevauche
 			return false;
-		} else { // ajout de n dans navires
+		} */else { // ajout de n dans navires
 			for (int i = 0; i < navires.length; i++) {
 				if (navires[i] == null) { 
 				navires[i]= n;
@@ -186,7 +175,7 @@ public class GrilleNavale {
 	
 	private boolean ajouteDansTirsRecus(Coordonnee c) {
 		if (estDansTirsRecus(c)) {
-			nbTirsRecus++;
+			//nbTirsRecus++;
 			return false;
 		} else {
 			Coordonnee [] tabPlusC = new Coordonnee [tirsRecus.length + 1];
@@ -196,6 +185,7 @@ public class GrilleNavale {
 			}
 			tabPlusC[i] = c;
 			tirsRecus = tabPlusC;
+			// System.out.println("tirsRecusLong " +tirsRecus[0]);
 			nbTirsRecus++;
 			return true;
 		}
@@ -213,6 +203,7 @@ public class GrilleNavale {
 	
 	
 	public boolean estTouche(Coordonnee c) { // en cours
+		//doit ajouterDansTirs
 		if ((recoitTir(c)) && (this.estTouche(c))) {
 			return true;
 		} else {
@@ -252,7 +243,8 @@ public class GrilleNavale {
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
 		g1.toString();
 		
-		Coordonnee c1 = new Coordonnee(3,3);
+		Coordonnee c1 = new Coordonnee(3, 3);
+		System.out.println("c1: " + c1);
 		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
 		
 		// Navire n1 = new Navire(c1, 2, true);
@@ -264,6 +256,9 @@ public class GrilleNavale {
 		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
 		System.out.println("ajouteDansTirsRecus: " + g1.ajouteDansTirsRecus(c1));
 		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
+		
+		
+		
 		g1.toString();
 		// System.out.println("tabTirsRecus" + g1.tirsRecus[0]);
 		//g1.recoitTir(c1);
