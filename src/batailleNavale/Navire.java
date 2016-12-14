@@ -123,25 +123,28 @@ public class Navire {
 
 	public boolean recoitTir(Coordonnee c) {
 		if (this.contient(c)) {
-			if (partiesTouchees.length > 0) {
-				for (int i = 0; i < partiesTouchees.length; i++) {
-					// on parcours le tableau parties touchees pour verifier que c n'y est pas
-					if (partiesTouchees[i] == c) {
-						// c est deja dans partiesTouchees
+			// il faut ajouter les valeurs au tableau
+			for (int i = 0; i < partiesTouchees.length; i++) {
+				// on parcours le tableau pour trouver s'il y a c
+				if (partiesTouchees[i] == null) {
+					partiesTouchees[i] = c;
+					// si c est a l'indice i du tableau
+					return true;
+				}
+				else {
+					if (partiesTouchees[i] != c) {
+						partiesTouchees[i + 1] = c;
+					}
+					else {
 						return false;
 					}
-					
 				}
-				// on verifie que le tableau ne contient pas deja c
 			}
-			// il faut creer un nouveau tableau a chaque fois
-			int i = partiesTouchees.length + 1;
-			// on initialise une variable intermediaire a la longueur du tableau + 1
-//			partiesTouchees[i] = c;
-			// on ajoute c a la suite du tableau
 			return true;
 		}
-		return false;
+		else {
+			return false; // ok
+		}
 	}
 
 	public boolean estTouche(Coordonnee c) {
@@ -200,15 +203,26 @@ public class Navire {
 
 	public static void main(String[] args) {
 /////////////// TESTS DE CONTIENT
-		Coordonnee Nav1 = new Coordonnee(3, 3);
+		Coordonnee Nav1 = new Coordonnee(3,3);
 		Navire test1 = new Navire(Nav1, 3, false);
 		Coordonnee touch7 = new Coordonnee (3,4); // D3
-//		System.out.println("Debut de test1 : " + test1.getDebut());
-//		System.out.println("Fin de test1 : " +test1.getFin());
-//		System.out.print("7 " + touch7.toString() + " : ");
-//		System.out.println(test1.contient(touch7)); // true
-///////////////////////////////////
-		System.out.println(test1.recoitTir(touch7));
+		if (test1.contient(touch7) != true) {
+			System.out.println("La methode contient a un probleme");
+		}
+/////////////// FIN TESTS DE CONTIENT
+/////////////// TESTS DE RECOITTIR
+		if (test1.recoitTir(touch7) != true) {
+			System.out.println("La methode recoitTir a un probleme");
+		}
+		Coordonnee touch8 = new Coordonnee (3,4); // D3
+		Coordonnee touch9 = new Coordonnee (2,1); // B1
+		if (test1.recoitTir(touch8) == true) {
+			System.out.println("La methode recoitTir a un probleme");
+		}
+		if (test1.recoitTir(touch9) == true) {
+			System.out.println("La methode recoitTir a un probleme");
+		}
+/////////////// FIN TESTS DE RECOITTIR
 		
 		// TODO Auto-generated method stub
 		Coordonnee A = new Coordonnee(2,3);
