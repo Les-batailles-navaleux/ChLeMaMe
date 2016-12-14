@@ -18,8 +18,7 @@ public class Navire {
 //		if (estVertical) {
 //			// -1 car on compte de 0 à n-1, a voir
 //			this.fin = new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne());  
-//		}
-//		if(!estVertical){
+//		}else{
 //			this.fin = new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1);
 //		}
 //		
@@ -31,33 +30,27 @@ public class Navire {
 		this.nbTouchees = 0;
 	}
 	
-
-	
-//	public String toString() {
-////		if (estVertical) {
-////			return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne + ", " + " vertical)"; 
-////		}
-////		return "Navire("+ debut + ", " + fin - debut + ", "); 
-//	}
 	public String toString() {
-		String s = "";
-		int longueur;
-		s += "Navire (" + this.debut.toString() + ", ";
+
+//		String s1 = "";
+//		String s2 ="";
+
+		String s1 = "Navire (" + this.debut.toString() + ", ";
+		// opérateur ternaire OP
+		String s2 = this.debut.getColonne()==this.fin.getColonne() ?((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)" :
+															((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
 		
-		// si le début et la fin de la colone son la même lettre alors vertical, sinonhorizontal
-		if (this.debut.getColonne()==this.fin.getColonne()) {
-			longueur = (this.fin.getLigne() - this.debut.getLigne()) + 1; // Pareil
-			s += longueur + ", Vertical)";
-		} else {			
-			// +1 pour compenser le longueur -1 incompris du constructeur Navire()
-			System.out.println("on passe dans la condition"); // TODO decommenter
-			longueur = (this.fin.getColonne() - this.debut.getColonne()) + 1;
-			s += longueur + ", Horizontal)";
-		}
-			return s;//		 if (this.estVertical) {
-//		 return "Navire("+ debut + ", " + fin.getColonne - debut.getColonne + ", " + " vertical)";
-//		 }
-//		 return "Navire("+ debut + ", " + fin - debut + ", ");
+
+//		// si le début et la fin de la colone son la même lettre alors vertical, sinon horizontal
+//		if (this.debut.getColonne() == this.fin.getColonne()) {
+//			// +1 pour compenser le longueur -1 incompris du constructeur Navire()
+//			s2 = ((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)";
+//		} else {			
+//			
+//			s2 = ((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
+//		}
+			return (s1+s2);
+		
 	}
 
 	public Coordonnee getDebut() {
@@ -67,7 +60,8 @@ public class Navire {
 	public Coordonnee getFin() {
 		return fin;
 	}
-
+	
+	
 	public boolean contient(Coordonnee c) {
 		if ((c.getColonne() - this.debut.getColonne() == 0) || (c.getColonne() - this.fin.getColonne() == 0)) {
 			// c et this sont sur la meme colonne
@@ -110,15 +104,24 @@ public class Navire {
 //				//blabla
 //			} 
 //		}
-//	}
 
-	public boolean chevauche(Navire n) {
-		if ((n.debut.getLigne() <= this.debut.getLigne()) 
-			&& (n.fin.getLigne() >= this.fin.getLigne()) 
-			&& (n.debut.getColonne() >= this.debut.getColonne()) 
-			&& (n.fin.getColonne() <= this.fin.getColonne()))
+	public boolean touche(Navire n) {
+		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
+			|| n.debut.getLigne() == this.fin.getLigne() + 1)
+			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
+			||
+			(n.fin.getColonne() + 1 == this.debut.getColonne() 
+			|| n.debut.getColonne() == this.fin.getColonne() + 1)
+			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
 			return true;
 		return false;
+	}
+
+	public boolean chevauche(Navire n) {
+		return ((n.debut.getLigne() <= this.fin.getLigne()) 
+			&& (n.fin.getLigne() >= this.debut.getLigne()) 
+			&& (n.debut.getColonne() <= this.fin.getColonne()) 
+			&& (n.fin.getColonne() >= this.debut.getColonne()));
 	}
 
 	public boolean recoitTir(Coordonnee c) {
@@ -224,14 +227,21 @@ public class Navire {
 		}
 /////////////// FIN TESTS DE RECOITTIR
 		
-		// TODO Auto-generated method stub
+	
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
 		Coordonnee C = new Coordonnee(2,3);
-		Coordonnee D = new Coordonnee(6,8);
-		Coordonnee E = new Coordonnee(6,9);
-		Coordonnee F = new Coordonnee(3,1);
 
+		Coordonnee D = new Coordonnee("J8");
+		Coordonnee E = new Coordonnee("G8");
+		Coordonnee F = new Coordonnee(3,1);
+		Navire n = new Navire(D, 5, true);
+		Navire nav = new Navire(E, 4, false);
+		
+		System.out.println(n.toString());
+		System.out.println(nav.toString());
+		System.out.println(n.chevauche(nav));
+		System.out.println(n.touche(nav));
 
 //		Coordonnee touch1 = new Coordonnee (3,2); // C2
 //		Coordonnee touch2 = new Coordonnee (4,4); // D4

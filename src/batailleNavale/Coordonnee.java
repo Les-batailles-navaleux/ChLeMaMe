@@ -6,9 +6,9 @@ public class Coordonnee {
 
 	public Coordonnee(int ligne, int colonne) {
 
-		if ( (ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
-			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
-		}
+//		if ( (ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
+//			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
+//		}
 
 		
 		
@@ -40,7 +40,8 @@ public class Coordonnee {
 		if(!Character.isLetter(c)){
 			throw new IllegalArgumentException("Partie alphabetique de la chaine incorrecte: lettre entre A et Z.");
 		} else {
-			this.colonne = c - 'A';
+
+			this.colonne = c - 'A' + 1;
 		}
 
 		// test de la partie Numérique
