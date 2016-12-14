@@ -103,13 +103,13 @@ public class GrilleNavale {
 		if (estDansTirsRecus(c)) {
 			return false;
 		} else {
-			Coordonnee [] tabPlusC = new Coordonnee [tirsRecus.length + 1];
+			Coordonnee [] tabPlusC = new Coordonnee [tirsRecus.length + 1]; //creation tableau plus grand
 			int i;
 			for (i = 0; i < tirsRecus.length; i++) {
-				tabPlusC[i] = tirsRecus[i];
+				tabPlusC[i] = tirsRecus[i]; //recopie de l'ancien tableau
 			}
-			tabPlusC[i] = c;
-			tirsRecus = tabPlusC;
+			tabPlusC[i] = c; // insere nouveau navire
+			tirsRecus = tabPlusC; // reassigne le nv tableau à l'ancien
 			nbTirsRecus++;
 			return true;
 		}
@@ -118,18 +118,29 @@ public class GrilleNavale {
 	
 	public boolean recoitTir(Coordonnee c) {
 		boolean b = false;
-		for (int i = 0; i < navires.length; i++)
-			if ((navires[i].estTouche(c)) && (!(estDansTirsRecus(c)))) {
+		for (int i = 0; i < navires.length; i++) {
+			if ((!(estDansTirsRecus(c))) && (navires[i].estTouche(c))) {
 				ajouteDansTirsRecus(c);
 				b = true;
-			} else if ((navires[i].estTouche(c)) && ((estDansTirsRecus(c)))) {
-				b = false;
 			} else {
-				ajouteDansTirsRecus(c);
 				b = false;
 			}
+		}
 		return b;
 	}
+//		boolean b = false;
+//		for (int i = 0; i < navires.length; i++)
+//			if ((navires[i].recoitTir(c)) && (!(estDansTirsRecus(c)))) {
+//				ajouteDansTirsRecus(c);
+//				b = true;
+//			} else if ((navires[i].recoitTir(c)) && ((estDansTirsRecus(c)))) {
+//				b = false;
+//			} else {
+//				ajouteDansTirsRecus(c);
+//				b = false;
+//			}
+//		return b;
+	
 	
 	
 	public boolean estTouche(Coordonnee c) {
@@ -177,7 +188,8 @@ public class GrilleNavale {
 		Coordonnee c2 = new Coordonnee(40, 40); //hors grille
 		Coordonnee c3 = new Coordonnee("D4"); 
 		Coordonnee c4 = new Coordonnee("B4");
-		//System.out.println("c1: " + c1);
+		Coordonnee c5 = new Coordonnee("F8");
+		// System.out.println("c1: " + c1);
 		// System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
 		 Navire n1 = new Navire(c1, 5, true);
 		 Navire n2 = new Navire(c2, 2, true); //hors grille
@@ -189,10 +201,12 @@ public class GrilleNavale {
 		 System.out.println("ajoutNav: " + g1.ajouteNavire(n4)); //ok: chevauche: false
 		 // System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1)); //ok: renvoie faux
 		 System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c2)); //faudrait lever une exception car hors cadre de tte facon
-		 System.out.println("estTouché: " + g1.estTouche(c1)); // 
-		 System.out.println("recoitTir: " + g1.recoitTir(c1)); //
-		 System.out.println("estTouché: " + g1.estTouche(c1));
-		 System.out.println("recoitTir: " + g1.recoitTir(c1));
+		 System.out.println("estTouchéc1: " + g1.estTouche(c1)); // ok: y a un nav et retourne true
+		 System.out.println("estTouchéc5: " + g1.estTouche(c5)); // ok: y a pas de nav et retourne false
+		 System.out.println("recoitTirc1: " + g1.recoitTir(c1)); // ok: retourne vrai car estTouche pour la 1ere fois
+		 System.out.println("recoitTirc1: " + g1.recoitTir(c1)); // ok: retourne faux car c1 a déjà été touché
+		 System.out.println("recoitTirc5: " + g1.recoitTir(c5)); // ok: retourne faux car pas nav
+		
 		// g1.toString();
 		//System.out.println("n1 ajouteNavire: " + g1.ajouteNavire(n1));
 		// g1.toString();
