@@ -6,9 +6,9 @@ public class Coordonnee {
 
 	public Coordonnee(int ligne, int colonne) {
 
-		if ( (ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
-			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
-		}
+//		if ( (ligne < 1 || ligne > 26) || (colonne < 1 || colonne > 26 )) {
+//			throw new IllegalArgumentException("Pour les lignes et les colonnes, entrez un chiffre entre 1 et 26");
+//		}
 
 		
 		
