@@ -9,9 +9,22 @@ public class GrilleNavale {
 	
 	public GrilleNavale(int taille, int[] taillesNavires) {
 		this.taille = taille;
-		taillesNavires = new int [nbNavires];
-		navires = new Navire [taillesNavires.length];
-		tirsRecus = new Coordonnee [0];
+
+		this.nbNavires = taillesNavires.length;			        // nb navire = taille du tableau de navires
+		this.nbTirsRecus = 0;								                // initialisation des tirs reçus à 0
+		this.tirsRecus = new Coordonnee[(taille*taille)]; 	// Nb de coups possible = taille de la grille
+		
+		this.navires = new Navire[this.nbNavires];
+		
+		for (int i = 0; i < this.nbNavires; i++) {
+			// remplacer true par le placement automatique par la suite...
+			this.navires[i] = new Navire(new Coordonnee("A1"), taillesNavires[i], true /*placementAuto(taillesNavires);*/); 
+		}
+
+		//taillesNavires = new int [nbNavires];
+		//navires = new Navire [taillesNavires.length];
+		//tirsRecus = new Coordonnee [0];
+
 	}
 	
 	public GrilleNavale(int taille, int nbNavires) {
@@ -36,7 +49,58 @@ public class GrilleNavale {
 //		this.nbNavires = navires.length;
 //	}
 	
+//	public GrilleNavale(int taille, int[] taillesNavires) {
+//		this.taille = taille;
+//		taillesNavires = new int [nbNavires];
+//		navires = new Navire [taillesNavires.length];
+//		tirsRecus = new Coordonnee [0];
+//	}
+//	
+//	public GrilleNavale(int taille, int nbNavires) {
+//		this.taille = taille;
+//		this.nbNavires = nbNavires;
+//	}
+	
 	public String toString() {
+    
+// <<<<<<< Debut dev Antoine ( car pas sur de ce qu'il faut garder ou non )
+/*		
+		String s1 ="";
+		String s2 ="";
+		
+		for (int i = 0; i < this.taille; i++) {
+			char c = (char) (i + 'A'); 			// i + code ASCII
+			s1 = s1 + Character.toString(c);	// affichage de la lettre +  ... le reste
+		}
+		
+		System.out.println(s1);
+		
+		int chiffre = 1;
+		
+		// Afficher les lettre dans une 1ere boucle for
+		for (int i = 0; i < this.taille; i++){
+			
+			s2 = s2 + Integer.toString(chiffre); // Affichage du nombre + ... le reste
+			
+			// Afficher les chiffres dans une deuxieme boulce for
+			for (int j = 0; j <= this.taille; j++) {
+				
+*/
+    
+//				Coordonnee k = new Coordonnee(i, j);
+				
+//				if (j == 0) {
+//					System.out.print(chiffre);
+//					chiffre++;
+//				} else if (estDansTirsRecus(k) == true ){
+//					System.out.print("là");
+//				
+//				} else {
+//					System.out.print(estDansTirsRecus(k) + " ");
+//					//System.out.print(" . ");
+//				}
+// ======= Fin dev Antoine
+        
 		for (int i = 0; i < taille; i++) {
 			char c = (char) (i + 'A');
 			System.out.print("  " + c);
@@ -54,6 +118,7 @@ public class GrilleNavale {
 				} else {
 					System.out.print(" . ");
 				}
+
 			
 				/*
 				if (estTouche(k)) { // case occupée et touchée
@@ -76,16 +141,16 @@ public class GrilleNavale {
 	
 	
 	public boolean ajouteNavire(Navire n) {
-		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
-		if ((touche(n))||(chevauche(n))||(n.getLigne() > gn.taille)||(n.getColonne() > gn.taille)){
-			return false;
-		}
-		for (int i = 0; i < navires.length; i++) {
-			if (navires[i] != null) {
-			navires[i]= n;
-			break;
-			}
-		}
+//		GrilleNavale gn = new GrilleNavale(taille, nbNavires);
+//		if ((touche(n))||(chevauche(n))||(n.getLigne() > gn.taille)||(n.getColonne() > gn.taille)){
+//			return false;
+//		}
+//		for (int i = 0; i < navires.length; i++) {
+//			if (navires[i] != null) {
+//			navires[i]= n;
+//			break;
+//			}
+//		}
 		return true;
 	}
 	
@@ -178,9 +243,13 @@ public class GrilleNavale {
 	*/
 	
 	public static void main(String[] args) {
+
+		
+
 		int [] tabTaillesNavires = {3, 2, 4};
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
 		g1.toString();
+		
 		Coordonnee c1 = new Coordonnee(3,3);
 		System.out.println("estDansGrille: " + g1.estDansGrille(c1));
 		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
@@ -189,6 +258,7 @@ public class GrilleNavale {
 		g1.toString();
 		System.out.println("tabTirsRecus" + g1.tirsRecus[0]);
 		//g1.recoitTir(c1);
+
 		
 		Navire n1 = new Navire(c1, 2, true);
 		g1.placementAuto(tabTaillesNavires);
