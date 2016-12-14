@@ -61,68 +61,59 @@ public class GrilleNavale {
 //	}
 	
 	public String toString() {
-        
-		for (int i = 0; i < taille; i++) {
-			char c = (char) (i + 'A');
-			System.out.print("  " + c);
+		String s=" ";
+		
+		for (int i = 1; i < this.taille+1; i++) {
+			char c = (char) (i-1 + 'A');
+			s=s+c+" ";
 		}
 		
-		System.out.println();
-		int chiffre = 1;
-		
-		// Afichage lignes 
-		for (int i = 0; i < this.taille; i++) {
-			
-			//Affichage colones
-			for (int j = 0; j <= this.taille; j++) {
-				
-				// On affiche les chiffres des lignes en premier
-				if (j == 0) {
-					System.out.print(chiffre);
-					chiffre++;
-				} else {
-					
-					// Ensuite qd j==1, on sauvegarde la coordonnée courante(i,j)
-					Coordonnee currentCoord = new Coordonnee(i,j);
-					
-					//Si on rencontre un bateau
-					for (int k = 0; k < navires.length; k++) {
-						if (this.navires[k].contient(currentCoord)) {
-							System.out.println("#");
-						}else{
-							System.out.print(" . ");
-							}
-						}
-					}
-				
-				
-				
-//				else if (estDansTirsRecus(k)){
-//				
-//					System.out.print(k);
-//				} 
-				
+		s=s+"\n";
+		for (int i = 1; i < this.taille+1; i++) {
+			s=s+i;
+			for (int j = 1; j < this.taille+1; j++) {
 
+				Coordonnee currentCoord = new Coordonnee(i, j);
+				
+				// si est dans tir reçu
+				if (this.estDansTirsRecus(currentCoord)) {
+					s=s+"0 ";
+				} else if (this.estTouche(currentCoord)) {
+					
+				}
+				
+				
+				// sinon case libre
+				else{
+					s=s+". ";
+					
+				}
+				
+				
+					
 
-			
-				/*
-				if (estTouche(k)) { // case occupée et touchée
-				System.out.print("#");
-				} else if (contient(k)){  // case occupée mais non touchée
-				System.out.print("X");
-				}
-				else if (estDansTirsRecus(k)){ // case libre + deja tirée
-				System.out.print("O");
-				}
-				else { // libre + aucun tir
-				System.out.print(".");
-				}
-				*/
+//						
+//						// On parcourt le tableau de navire
+//						for (int k = 0; k < navires.length; k++) {
+//							// SI on rencontre un bateau non touché
+//							if (this.navires[k].contient(currentCoord)){
+////								System.out.print(" # ");
+//							}
+//							else{
+
+//							}
+//						}
+					
+
+					
+				
 			}
-			System.out.println("");
+			s=s+"\n";
 		}
-		return "";
-	}
+
+
+		return s;
+		}
 	
 	
 	public boolean ajouteNavire(Navire n) {
@@ -131,8 +122,10 @@ public class GrilleNavale {
 //		Coordonnee coordFinN = new Coordonnee(n.getDebut().toString());
 		
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille
-			return false;
-//		} else if ((touche(n))||(chevauche(n))){ //si n touche ou chevauche
+			return false;			
+		
+		// si les coordonnées du navire courant == corrdonnée d'un navire contenu dans tableau
+//		if ((touche(n))||(chevauche(n))){ //si n touche ou chevauche
 //			return false;
 		} else { // ajout de n dans navires
 			for (int i = 0; i < navires.length; i++) {
@@ -228,43 +221,30 @@ public class GrilleNavale {
 		
 	//}
 	
-	/*
+	
 	public boolean perdu() {
-		
+		return true;
 	}
-	*/
+	
 	
 	public static void main(String[] args) {
 
 		
 
-		int [] tabTaillesNavires = {3, 2, 4};
-		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
+		int [] tabTaillesNavires = {3};
+		GrilleNavale g1 = new GrilleNavale(5, tabTaillesNavires);
 		
 		
-		Coordonnee c1 = new Coordonnee("C3");
-		Navire n1 = new Navire(c1, 2, true);
+		Coordonnee c1 = new Coordonnee("C5");
+		Navire n1 = new Navire(c1, 2, false);
 		g1.ajouteNavire(n1);
 		
 		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
 		System.out.println("on ajoute un navire: " + g1.ajouteNavire(n1));
 		
-		g1.toString();
+		System.out.println(g1.toString());
 		
 		
-		//g1.toString();
-		
-//		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
-//		System.out.println("ajouteDansTirsRecus: " + g1.ajouteDansTirsRecus(c1));
-//		System.out.println("estDansTirsRecus: " + g1.estDansTirsRecus(c1));
-//		g1.toString();
-//		System.out.println("tabTirsRecus" + g1.tirsRecus[0]);
-		//g1.recoitTir(c1);
-
-		
-	
-//		g1.placementAuto(tabTaillesNavires);
-//		g1.toString();
 
 	}
 
