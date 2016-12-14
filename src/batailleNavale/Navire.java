@@ -160,7 +160,7 @@ public class Navire {
 	public boolean estTouche() {
 		// parcourir le tableau partiesTouchees pour trouver this
 		for (int i = 0; i < partiesTouchees.length; i++) { 
-			if ((partiesTouchees[i] == this.debut) || (partiesTouchees[i] == this.fin)) {
+			if ((partiesTouchees[i].getColonne() >= this.debut.getColonne()) && (partiesTouchees[i].getLigne() <= this.debut.getLigne()) || (partiesTouchees[i].getColonne() >= this.fin.getColonne()) && (partiesTouchees[i].getLigne() <= this.fin.getLigne()) ) {
 				return true;
 			}
 		}
@@ -179,9 +179,9 @@ public class Navire {
 					if (partiesTouchees[j] != intermediaire) {
 						return false;
 					}
-					j = j + 1;
+					j++;
 				}
-				i = i + 1;
+				i++;
 			}
 			return true;
 		}
@@ -196,9 +196,9 @@ public class Navire {
 					if (partiesTouchees[j] != intermediaire) {
 						return false;
 					}
-					j = j + 1;
+					j++;
 				}
-				i = i + 1;
+				i++;
 			}
 		}
 		return true;
@@ -226,7 +226,15 @@ public class Navire {
 			System.out.println("La methode recoitTir a un probleme");
 		}
 /////////////// FIN TESTS DE RECOITTIR
-		
+/////////////// TESTS DE ESTTOUCHE
+		test1.recoitTir(touch7);
+		if (test1.estTouche(touch7) != true) {
+			System.out.println("La methode estTouche(coordonnees c) a un probleme");
+		}
+		if (test1.estTouche() != true) {
+			System.out.println("La methode estTouche() a un probleme");
+		}
+/////////////// FIN TESTS DE ESTTOUCHE
 	
 		Coordonnee A = new Coordonnee(2,3);
 		Coordonnee B = new Coordonnee(4,5);
