@@ -86,31 +86,31 @@ public class Navire {
 		return false;
 	}
 
-	public boolean touche(Navire n) {
-		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
-			|| n.debut.getLigne() == this.fin.getLigne() + 1)
-			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
-			||
-			(n.fin.getColonne() + 1 == this.debut.getColonne() 
-			|| n.debut.getColonne() == this.fin.getColonne() + 1)
-			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
-			return true;
-		return false;
-	}
-	public boolean touche(Navire n) {
-		int lgh = n.fin.getLigne() - n.debut.getLigne();
-		int lgv = n.fin.getColonne() - n.debut.getColonne();
-
-		if (lgh == 0) {
-			if (n.debut.voisine(this.debut) || n.fin.voisine(this.debut) || n.fin.voisine(this.fin)) {
-				return true;
-			}
-			Coordonnee i = n.debut;
-			while(i.compareTo(n.debut) < 0){
-				//blabla
-			} 
-		}
-	}
+//	public boolean touche(Navire n) {
+//		if (((n.fin.getLigne() + 1 == this.debut.getLigne()
+//			|| n.debut.getLigne() == this.fin.getLigne() + 1)
+//			&&(n.debut.getColonne() <= this.fin.getColonne() && n.fin.getColonne() >= this.debut.getColonne()))	
+//			||
+//			(n.fin.getColonne() + 1 == this.debut.getColonne() 
+//			|| n.debut.getColonne() == this.fin.getColonne() + 1)
+//			&&(n.debut.getLigne() <= this.fin.getLigne() && n.fin.getLigne() >= this.debut.getLigne()))
+//			return true;
+//		return false;
+//	}
+//	public boolean touche(Navire n) {
+//		int lgh = n.fin.getLigne() - n.debut.getLigne();
+//		int lgv = n.fin.getColonne() - n.debut.getColonne();
+//
+//		if (lgh == 0) {
+//			if (n.debut.voisine(this.debut) || n.fin.voisine(this.debut) || n.fin.voisine(this.fin)) {
+//				return true;
+//			}
+//			Coordonnee i = n.debut;
+//			while(i.compareTo(n.debut) < 0){
+//				//blabla
+//			} 
+//		}
+//	}
 
 	public boolean chevauche(Navire n) {
 		if ((n.debut.getLigne() <= this.debut.getLigne()) 
@@ -123,9 +123,13 @@ public class Navire {
 
 	public boolean recoitTir(Coordonnee c) {
 		if (this.contient(c)) {
+			if (partiesTouchees.length > 0) {
+				// on verifie que le tableau ne contient pas deja c
+			}
+			// il faut creer un nouveau tableau a chaque fois
 			int i = partiesTouchees.length + 1;
 			// on initialise une variable intermediaire a la longueur du tableau + 1
-			partiesTouchees[i] = c;
+//			partiesTouchees[i] = c;
 			// on ajoute c a la suite du tableau
 			return true;
 		}
@@ -188,14 +192,15 @@ public class Navire {
 
 	public static void main(String[] args) {
 /////////////// TESTS DE CONTIENT
-//		Coordonnee Nav1 = new Coordonnee(3, 3);
-//		Navire test1 = new Navire(Nav1, 3, false);
-//		Coordonnee touch7 = new Coordonnee (3,4); // C5
+		Coordonnee Nav1 = new Coordonnee(3, 3);
+		Navire test1 = new Navire(Nav1, 3, false);
+		Coordonnee touch7 = new Coordonnee (3,4); // D3
 //		System.out.println("Debut de test1 : " + test1.getDebut());
 //		System.out.println("Fin de test1 : " +test1.getFin());
 //		System.out.print("7 " + touch7.toString() + " : ");
 //		System.out.println(test1.contient(touch7)); // true
 ///////////////////////////////////
+		System.out.println(test1.recoitTir(touch7));
 		
 		// TODO Auto-generated method stub
 		Coordonnee A = new Coordonnee(2,3);
