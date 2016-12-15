@@ -1,4 +1,3 @@
-
 package batailleNavale;
 
 public abstract class Joueur {
@@ -77,4 +76,6 @@ public abstract class Joueur {
 	}
 
 }
+
+
 

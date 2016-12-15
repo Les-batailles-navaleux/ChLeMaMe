@@ -1,33 +1,30 @@
 package batailleNavale;
-
 import java.util.Scanner;
 
 public class JoueurAuto extends Joueur {
 	
 	public JoueurAuto(GrilleNavale g, String nom) {
 		super(g, nom);
-		nom = "Ordinateur";
 	}
 	
 	protected void perdu() {
-	
-	
+		System.out.println("GameOver");
 	}
 	
 	protected void gagne() {
-		
+		System.out.println(this.getNom() + "win!");
 	}
 	
 	protected void retourAttaque(Coordonnee c, int etat) {
 		if(etat == TOUCHE) {
 			etat = TOUCHE;
-			System.out.println("this a touché j mais l'a pas coulé");
+			System.out.println("tu m'as touché  mais pas coulé");
 		} else if (etat == COULE) {
-			System.out.println("this a touché j et coulé");
+			System.out.println("tu m'as touché coulé");
 		} else if (etat == A_L_EAU) { 
-			System.out.println("this a mis j a l'eau");
+			System.out.println("tu m'as loupé ! dans la flotte..");
 		} else {
-			System.out.println("GameOver");
+			System.out.println("là");
 		}
 		debutAttaque();
 	}
@@ -47,15 +44,18 @@ public class JoueurAuto extends Joueur {
 		//int [] tabTaillesNavs = {2, 2, 3, 3, 4, 4};
 		//GrilleNavale mygrid = new GrilleNavale(10, tabTaillesNavs);
 		//mygrid.placementAuto(tabTaillesNavs); //grid du joueur auto avec nav placés
-		//Coordonnee attaqueMilieu = new Coordonnee(5, 5);
-		//this.attaque(attaqueMilieu); //attaque sur une case aléatoire
-		
-		System.out.println("En quelle cooronnées voulez-vous attaquer ?");
-		Scanner sc = new Scanner(System.in);
-		String chaine = sc.nextLine();
-        Coordonnee coordSaisie = new Coordonnee(chaine);
-		int et = 0; // ? jsais pas
-		retourDefense(coordSaisie, et);
+        
+        // this attaque 
+        // Coordonnee attaqueMilieu = new Coordonnee(5, 5);
+		Coordonnee al = new Coordonnee((int) Math.random() * 10, (int) Math.random() * 10); 
+      	while (this.getGrille().recoitTir(al)) {
+      		al = new Coordonnee((int) Math.random() * 10, (int) Math.random() * 10);  //attaque sur une case aléatoire
+      	}
+      		this.attaque(al);
+      	}
+        
+//		int etatInit = 0; 
+//		retourDefense(coordSaisie, etatInit);
 	}
 	
-}
+
