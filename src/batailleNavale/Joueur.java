@@ -33,7 +33,10 @@ public abstract class Joueur {
 			}
 		}
 		
-		public boolean defense(Coordonnee c) {
+		public boolean defense(Coordon
+			this.grille.recoitTir(c); // prend encompte le tir
+			if (this.grille.estCoule(c)) //si coulé -> fin de partie
+				return false;
 			int etat;
 			if (this.grille.recoitTir(c)) {
 				etat = TOUCHE;
@@ -45,9 +48,10 @@ public abstract class Joueur {
 			}
 			etat = A_L_EAU;
 			this.retourDefense(c, etat);
+
 			return true;
 		}
-		
+				
 		protected abstract void perdu();
 		
 		protected abstract void gagne();
