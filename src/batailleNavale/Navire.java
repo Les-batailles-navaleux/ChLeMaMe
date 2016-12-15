@@ -23,23 +23,25 @@ public class Navire {
 //		}
 //		
 		// la puissance ternaire en 1 ligne .. ou presque
-		this.fin = estVertical ? new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1): // horizontal
+		this.fin = !estVertical ? new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1): // horizontal
 								 new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne()); 	// estVertical
 		
 		this.partiesTouchees = new Coordonnee[longueur];
 		this.nbTouchees = 0;
 	}
 	
-	public String toString() {
-
-//		String s1 = "";
-//		String s2 ="";
-
-		String s1 = "Navire (" + this.debut.toString() + ", ";
-		// opérateur ternaire OP
-		String s2 = this.debut.getColonne()==this.fin.getColonne() ?((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)" :
-															((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
-		
+//	public String toString() {
+//
+////		String s1 = "";
+////		String s2 ="";
+//
+//		String sDeb = "Navire (" + this.debut.toString() + ", ";
+//		String sFin = "Navire (" + this.fin.toString();
+//		
+//		// opérateur ternaire OP
+//		String s2 = this.debut.getColonne()==this.fin.getColonne() ?((this.fin.getLigne() - (this.debut.getLigne()) + 1)) + ", Vertical)" :
+//															((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
+//		
 
 //		// si le début et la fin de la colone son la même lettre alors vertical, sinon horizontal
 //		if (this.debut.getColonne() == this.fin.getColonne()) {
@@ -49,7 +51,23 @@ public class Navire {
 //			
 //			s2 = ((this.fin.getColonne() - (this.debut.getColonne()) + 1)) + ", Horizontal)";
 //		}
-			return (s1+s2);
+//			return (sDeb+s2);
+//		
+//	}
+	
+	public String toString(){
+		String str="Navire (";
+		String inclinaison="";
+		int lg;
+		if(this.fin.getLigne()!=this.debut.getLigne()){
+			inclinaison="Vertical";
+			lg=(this.fin.getLigne()-this.debut.getLigne()+1);
+			}
+		else{inclinaison="Horizontal";
+		lg=(this.fin.getColonne()-this.debut.getColonne()+1);
+		}
+		str=str+this.debut+","+fin+","+lg+","+inclinaison+")";
+		return(str);
 		
 	}
 
@@ -237,14 +255,18 @@ public class Navire {
 		Coordonnee D = new Coordonnee("J8");
 		Coordonnee E = new Coordonnee("G8");
 		Coordonnee F = new Coordonnee(3,1);
+		
 		Navire n = new Navire(D, 5, true);
 		Navire nav = new Navire(E, 4, false);
+		Navire nav2 = new Navire(F, 4, false);
+		
+		System.out.println("nav2: "+nav2.toString());
 		
 		System.out.println(n.toString());
 		System.out.println(nav.toString());
 		System.out.println(n.chevauche(nav));
 		System.out.println(n.touche(nav));
-
+		System.out.println("F: "+ F.toString());
 //		Coordonnee touch1 = new Coordonnee (3,2); // C2
 //		Coordonnee touch2 = new Coordonnee (4,4); // D4
 //		Coordonnee touch3 = new Coordonnee (2,3); // B3
