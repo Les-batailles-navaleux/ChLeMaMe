@@ -1,3 +1,4 @@
+
 package batailleNavale;
 
 public abstract class Joueur {
@@ -9,15 +10,20 @@ public abstract class Joueur {
 		private String nom;
 		
 		public Joueur(GrilleNavale g, String nom) {
-			
+			this.grille = g;
+			this.nom = nom;
 		}
 		
 		public GrilleNavale getGrille() {
-			
+			return this.grille;
+		}
+		
+		public String getNom() {
+			return this.nom;
 		}
 		
 		public void jouerAvec(Joueur j) {
-			
+			this.adversaire = j;
 		}
 		
 		public void attaque(Coordonnee c) {
@@ -25,10 +31,35 @@ public abstract class Joueur {
 				adversaire.debutAttaque();
 			}
 		}
-		public boolean defense(Coordonnee c) {
-			
-		}
 		
+		public boolean defense(Coordonnee c) {
+			int etat = 0;
+			boolean b = false;
+			
+			if (this.grille.recoitTir(c)) {   // on interroge la grille, true si qqch a �t� touch�;..
+				if(this.grille.estTouche(c)) {
+					etat = 1;
+					b = true;
+				} else if (this.grille.estCoule(c) && !this.grille.perdu()) {
+					etat = 2; 
+					b = true;
+				} else if (this.grille.estALEau(c)) {
+					etat = 3;
+					b = true;
+				} else if(this.grille.perdu()) {
+					this.perdu();
+					adversaire.gagne();
+					b = false;
+				}	
+				b = false;
+			}
+			
+			retourDefense(c, etat);
+			adversaire.retourAttaque(c, etat);
+			
+			return b;
+		}	
+				
 		protected abstract void perdu();
 		
 		protected abstract void gagne();
@@ -46,3 +77,4 @@ public abstract class Joueur {
 	}
 
 }
+
