@@ -43,54 +43,32 @@ public class GrilleNavale {
 //	}
 //	
 	
-	
 	public void placementAuto(int[] taillesNavires) {
 
 		for (int i = 0; i < taillesNavires.length; i++) {
 			// (int)Math.random()*(max + 1 - min) + min;
 			boolean direction = Math.random() < 0.5;
-			// new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
+//			Coordonnee al = new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
 			Coordonnee al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1)); 
 			Navire n = new Navire(al,  taillesNavires[i], direction);
 			
 			if(!estDansGrille(n.getFin())) {
-//				do {
-//					al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1));
-//					n = new Navire(al,  taillesNavires[i], direction);
+				do {
+//					al = new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
+					al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1));
+					n = new Navire(al,  taillesNavires[i], direction);
 					System.out.println("le bateau dépasse de la grille");
-//				} while (!estDansGrille(n.getFin()));
+				} while (!estDansGrille(n.getFin()));
 			} 
-			else{
-				this.navires[i] = n;
-				ajouteNavire(n);
-			}
+			
+			this.navires[i] = n;
+			ajouteNavire(n);
 			
 			System.out.println("coord aléatoire = " + al + "\n navire n = "+n+"\n");
 			
-			
-			
-			
-			//TODO tant que le bateau est mal placé
-			
-//			boolean coordOk = false;
-//			do {
-//				if (!chevauche, etc..) {
-//					//ajouteNavire(n);
-//				}	
-//				
-//				
-//			} while (coordOk);
-			
-			
-			
-	
-				
 		}
 	}
-	
-	
-	
-	
+
 	/*
 	 * La StringBufer va créer une chaine de caractere contenant les coordonnées pour avoir les infos sur les 
 	 * bateaux et formater la grille avec les indices de lignes et de colone et les retour à la ligne
@@ -311,20 +289,20 @@ public class GrilleNavale {
 		
 
 		System.out.println("PARTIE TEST DU BRO-GRAMMEUR");
-		int [] tabTaillesNaviresBro = {2};
+		int [] tabTaillesNaviresBro = {1,3,5};
 		
 		GrilleNavale grilleBro = new GrilleNavale(5, tabTaillesNaviresBro);
-		Coordonnee coorBro = new Coordonnee("B2");
-		Coordonnee coorBro1 = new Coordonnee(1,1); //A1
-		Coordonnee coorBro2 = new Coordonnee(2,2); //B2
-		Coordonnee coorBro3 = new Coordonnee(4,3); //D3
-		
-		Coordonnee videTouche = new Coordonnee("C1"); // C2
-		
-		Navire navBro = new Navire(coorBro, 2, false);
-		
-		
-		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
+//		Coordonnee coorBro = new Coordonnee("B2");
+//		Coordonnee coorBro1 = new Coordonnee(1,1); //A1
+//		Coordonnee coorBro2 = new Coordonnee(2,2); //B2
+//		Coordonnee coorBro3 = new Coordonnee(4,3); //D3
+//		
+//		Coordonnee videTouche = new Coordonnee("C1"); // C2
+//		
+//		Navire navBro = new Navire(coorBro, 2, false);
+//		
+//		
+//		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
 		
 //		System.out.println("Tir sur une case vide: "+grilleBro.recoitTir(videTouche));
 //		System.out.println("Tir sur une case vide N2: "+grilleBro.recoitTir(videTouche));
