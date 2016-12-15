@@ -23,6 +23,7 @@ public abstract class Joueur {
 		
 		public void jouerAvec(Joueur j) {
 			this.adversaire = j;
+			j.adversaire = this;
 		}
 		
 		public void attaque(Coordonnee c) {
