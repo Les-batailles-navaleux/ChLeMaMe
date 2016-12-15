@@ -337,20 +337,18 @@ public class GrilleNavale {
 // testpour toString
 		int [] tabTaillesNavires = {3, 2, 4};
 		GrilleNavale g1 = new GrilleNavale(5, tabTaillesNavires);
+		g1.toString();
 		
 		
-		Coordonnee c1 = new Coordonnee("C5");
-		Navire n1 = new Navire(c1, 2, false);
-		g1.ajouteNavire(n1);
+		Coordonnee c0 = new Coordonnee("C5");
+		Navire n0 = new Navire(c0, 2, false);
+		g1.ajouteNavire(n0);
 		
-		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
-		System.out.println("on ajoute un navire: " + g1.ajouteNavire(n1));
+		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c0));
+		System.out.println("on ajoute un navire: " + g1.ajouteNavire(n0));
 		
 		System.out.println(g1.toString());
-
-		int [] tabTaillesNavires = {3, 2, 4};
-		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
-		//g1.toString();
+		
 		Coordonnee c1 = new Coordonnee("C3");
 		Coordonnee c2 = new Coordonnee(40, 40); //hors grille
 		Coordonnee c3 = new Coordonnee("D4"); 
