@@ -318,6 +318,8 @@ public class GrilleNavale {
 		for(int i = 0; i < nbNavires; i++){
 			if(!navires[i].estCoule())
 				return false;
+
+
 			//renvoie vrai si tous les bateaux de navires sont coules
 		}
 		return true;
