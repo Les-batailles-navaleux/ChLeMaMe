@@ -48,10 +48,14 @@ public class JoueurAuto extends Joueur {
         // this attaque 
         // Coordonnee attaqueMilieu = new Coordonnee(5, 5);
 		Coordonnee al = new Coordonnee((int) Math.random() * 10, (int) Math.random() * 10); 
-      	this.attaque(al); //attaque sur une case aléatoire
+      	while (this.getGrille().recoitTir(al)) {
+      		al = new Coordonnee((int) Math.random() * 10, (int) Math.random() * 10);  //attaque sur une case aléatoire
+      	}
+      		this.attaque(al);
+      	}
         
 //		int etatInit = 0; 
 //		retourDefense(coordSaisie, etatInit);
 	}
 	
-}
+
