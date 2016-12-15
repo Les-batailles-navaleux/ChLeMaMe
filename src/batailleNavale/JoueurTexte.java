@@ -58,5 +58,5 @@ public class JoueurTexte extends Joueur {
 		
 		j1.debutAttaque();
 	}
-
+}
 
