@@ -1,9 +1,11 @@
 package batailleNavale;
 
 public abstract class Joueur {
+	// ETATS
 		public final static int TOUCHE=1;
 		public final static int COULE=2;
 		public final static int A_L_EAU=3;
+	// FIN ETATS
 		private Joueur adversaire;
 		private GrilleNavale grille;
 		private String nom;
