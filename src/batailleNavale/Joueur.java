@@ -32,14 +32,12 @@ public abstract class Joueur {
 		}
 		
 		public boolean defense(Coordonnee c) {
-			if (this.grille.recoitTir(c)) {
+			this.grille.recoitTir(c); // prend encompte le tir
+			if (this.grille.estCoule(c)) //si coulé -> fin de partie
 				return false;
-			} else if (this.grille.estCoule(c)) {
-				return false;
-			}
 			return true;
 		}
-		
+				
 		protected abstract void perdu();
 		
 		protected abstract void gagne();
