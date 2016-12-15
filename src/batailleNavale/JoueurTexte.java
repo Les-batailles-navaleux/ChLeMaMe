@@ -1,5 +1,4 @@
 package batailleNavale;
-
 import java.util.Scanner;
 
 public class JoueurTexte extends Joueur {
@@ -44,6 +43,7 @@ public class JoueurTexte extends Joueur {
 	}
 
 	public static void main(String[] args) {
+		
 		int[] tN = {1};
 		GrilleNavale g1 = new GrilleNavale(10, tN);
 		g1.placementAuto(tN);
@@ -58,5 +58,6 @@ public class JoueurTexte extends Joueur {
 		
 		j1.debutAttaque();
 	}
+}
 
 
