@@ -22,8 +22,7 @@ public abstract class Joueur {
 		}
 		
 		public void jouerAvec(Joueur j) {
-			this.debutAttaque();
-			j.debutAttaque();
+			this.adversaire = j;
 		}
 		
 		public void attaque(Coordonnee c) {
@@ -31,8 +30,14 @@ public abstract class Joueur {
 				adversaire.debutAttaque();
 			}
 		}
+		
 		public boolean defense(Coordonnee c) {
-			
+			if (this.grille.recoitTir(c)) {
+				return false;
+			} else if (this.grille.estCoule(c)) {
+				return false;
+			}
+			return true;
 		}
 		
 		protected abstract void perdu();
