@@ -219,7 +219,7 @@ public class GrilleNavale {
 	 *  methode OK
 	 */
 	private boolean estDansGrille(Coordonnee c) {
-		return ((c.getLigne() < taille) && (c.getColonne() < taille)); //TODO changer par <= car taille grille est compris?
+		return ((c.getLigne() < taille) && (c.getColonne() < taille)); 
 //		return ((c.getLigne() <= this.taille) && (c.getColonne() <= this.taille));
 	}
 	
@@ -343,7 +343,7 @@ public class GrilleNavale {
 		System.out.println(" /*****************************************/");
 		
 		
-		System.out.println("PARTIE TEST DES AUTRES");
+		System.out.println("PARTIE TEST DES BRO-GRAMMEUSES");
 		int[] tabTaillesNavires = { 3, 2, 4 };
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
 		// g1.toString();
