@@ -43,7 +43,7 @@ public class GrilleNavale {
 		Coordonnee coordCourante = new Coordonnee(0,0);	// <0,0> coordonnée arbitraire
 		
 		// assurer une capacité d'au minimum la taille de la grille.
-		superGrille.ensureCapacity(coteGrille*coteGrille); 		
+		superGrille.ensureCapacity(coteGrille*coteGrille+(2*coteGrille)); 		
 
 		
 		// ********** TODO boucle for de test à supprimer quandd code dev est finit  **********//
@@ -80,9 +80,16 @@ public class GrilleNavale {
 			// des valeurs retournées par les méthodes.
 			
 			
-		// TODO implémenter tous le bordel de test: tirRecu?bateau? etc ..
-			
+		// TODO implémenter tous le bordel de test: tirRecu?bateau? etc ..			
 			// condition: coordCourante contenue dans tir reçus ?
+//			if(estDansTirsRecus(coordCourante)){
+//				superGrille.insert(i,"O");
+//			};
+//			
+			
+			
+			
+			
 			
 			// condition: coordCourante est bateau?
 			// Si oui bateau endommagé ?
@@ -92,8 +99,6 @@ public class GrilleNavale {
 			tmp = ".";
 			superGrille.append(tmp);
 		// end TODO
-			
-			
 		}
 		
 		
@@ -110,8 +115,6 @@ public class GrilleNavale {
 			}
 			
 			if (k==0) {
-//				System.out.println("k= "+k);
-				
 				for (int i = coteGrille; i > 0; i--) {
 					char c = (char) (i-1 + 'A');
 					superGrille.insert(k,c);
@@ -124,44 +127,15 @@ public class GrilleNavale {
 		
 		String s = superGrille+"";
 		
-//		for (int i = 1; i < this.taille+1; i++) {
-//			char c = (char) (i-1 + 'A');
-//			s=s+c;
-//		}
-//		
-//		s=s+"\n";
-//		for (int i = 1; i < this.taille+1; i++) {
-//			s=s+i;
-//			for (int j = 1; j < this.taille+1; j++) {
-//
-//				Coordonnee currentCoord = new Coordonnee(i, j);
-//				
-//				// si est dans tir reçu
-//				if (this.estDansTirsRecus(currentCoord)) {
-//					s=s+"0";
-//				} else if (this.estTouche(currentCoord)) {
-//					
-//				}
-//				
-//				
-//				// sinon case libre
-//				else{
-//					s=s+". ";
-//					
-//				}
-//				
-				
-					
 
-//						
-//						// On parcourt le tableau de navire
+//						//On parcourt le tableau de navire
 //						for (int k = 0; k < navires.length; k++) {
 //							// SI on rencontre un bateau non touché
 //							if (this.navires[k].contient(currentCoord)){
-////								System.out.print(" # ");
+//								System.out.print(" # ");
 //							}
 //							else{
-
+//
 //							}
 //						}
 					
@@ -203,27 +177,31 @@ public class GrilleNavale {
 
 
 		Navire[] n2 = new Navire[navires.length + 1];
-		boolean b = false;
-    
-		for (int i = 0; i < navires.length; i++){ // si touche ou chevauche: nop
-			if(navires[i].chevauche(n) || navires[i].touche(n)){
-				return b;
-		  }
-    }
-    
+	
+		for (int i = 0; i < this.navires.length; i++) { // si touche ou chevauche: nop
+			if((this.navires[i].chevauche(n) || this.navires[i].touche(n))){
+				
+				System.out.println("Erreur de coordonnées: le navire touche ou chevauche !");
+				return false;
+				}
+			}
+		
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille :nop
-			return b;
+			System.out.println("Erreur de coordonnées: le navire sort de la grille !");
+			return false;
 		} else { // sinon ajout de n dans navires
+		
 			int j;
 			for (j = 0; j < n2.length - 1; j++) {
 				n2[j] = navires[j];
+			
 			}
-					n2[j] = n;
-					navires = n2;
-					nbNavires++;
-					b = true;
-				}	
-		return b;
+			n2[j] = n;
+			navires = n2;
+			nbNavires++;
+		}
+		System.out.println("Le navire '" +this.nbNavires+ "' a été ajouté !");
+		return true;
 	}
 	
 	public void placementAuto(int[] taillesNavires) {
@@ -234,19 +212,23 @@ public class GrilleNavale {
 		}
 	}
 	
+	/*
+	 *  methode OK
+	 */
 	private boolean estDansGrille(Coordonnee c) {
-		return ((c.getLigne() < taille) && (c.getColonne() < taille));
+		
+		return ((c.getLigne() <= this.taille) && (c.getColonne() <= this.taille));
 	}
 	
 
 	private boolean estDansTirsRecus(Coordonnee c) {
-		boolean b = false;
-		for (int i = 0; i < tirsRecus.length; i++)  {
+
+		for (int i = 0; i < this.tirsRecus.length; i++)  {
 			if (estDansGrille(c) && (c.equals(tirsRecus[i]))){
-				b = true;
+				return true;
 			} 
-		}
-		return b;
+		}	
+		return false;
 	}
 	
 	
@@ -335,22 +317,25 @@ public class GrilleNavale {
 	public static void main(String[] args) {
 		
 // testpour toString
+		System.out.println("MA PARTIE TEST");
+		int [] tabTaillesNavires1 = {3, 2, 4};
+		GrilleNavale gToine = new GrilleNavale(5, tabTaillesNavires1);
+		
+		
+		Coordonnee cToine = new Coordonnee("B5");
+		Navire nToine = new Navire(cToine, 2, true);
+		gToine.ajouteNavire(nToine);
+		
+		System.out.println("la coordonnée estDansGrille? " + gToine.estDansGrille(cToine));
+		System.out.println("on ajoute un navire: " + gToine.ajouteNavire(nToine));
+		
+		System.out.println(gToine.toString());
+		
+		
+		System.out.println("PARTIE TEST DES AUTRES");
 		int [] tabTaillesNavires = {3, 2, 4};
-		GrilleNavale g1 = new GrilleNavale(5, tabTaillesNavires);
-		
-		
-		Coordonnee c1 = new Coordonnee("C5");
-		Navire n1 = new Navire(c1, 2, false);
-		g1.ajouteNavire(n1);
-		
-		System.out.println("c1 estDansGrille: " + g1.estDansGrille(c1));
-		System.out.println("on ajoute un navire: " + g1.ajouteNavire(n1));
-		
-		System.out.println(g1.toString());
-
-		int [] tabTaillesNavires = {3, 2, 4};
-		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
-		//g1.toString();
+		GrilleNavale g1 = new GrilleNavale(9, tabTaillesNavires);
+//		System.out.println(g1.toString());
 		Coordonnee c1 = new Coordonnee("C3");
 		Coordonnee c2 = new Coordonnee(40, 40); //hors grille
 		Coordonnee c3 = new Coordonnee("D4"); 
