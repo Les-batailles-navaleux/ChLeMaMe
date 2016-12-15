@@ -48,29 +48,43 @@ public class GrilleNavale {
 
 		for (int i = 0; i < taillesNavires.length; i++) {
 			// (int)Math.random()*(max + 1 - min) + min;
+			boolean direction = Math.random() < 0.5;
+			// new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
 			Coordonnee al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1)); 
-			Navire n = new Navire(al,  taillesNavires[i], Math.random() < 0.5);
+			Navire n = new Navire(al,  taillesNavires[i], direction);
 			
-			System.out.println("coord aléatoire = "+al+"\n navire n = "+n);
-
-			this.navires[i] = n;
+			if(!estDansGrille(n.getFin())) {
+//				do {
+//					al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1));
+//					n = new Navire(al,  taillesNavires[i], direction);
+					System.out.println("le bateau dépasse de la grille");
+//				} while (!estDansGrille(n.getFin()));
+			} 
+			else{
+				this.navires[i] = n;
+				ajouteNavire(n);
+			}
 			
-			/*
+			System.out.println("coord aléatoire = " + al + "\n navire n = "+n+"\n");
+			
+			
+			
+			
 			//TODO tant que le bateau est mal placé
 			
-			boolean coordOk = false;
-			do {
-				if (!chevauche, etc..) {
-					//ajouteNavire(n);
-				}	
-				
-				
-			} while (coordOk);
-			*/
+//			boolean coordOk = false;
+//			do {
+//				if (!chevauche, etc..) {
+//					//ajouteNavire(n);
+//				}	
+//				
+//				
+//			} while (coordOk);
 			
-			Coordonnee c = new Coordonnee(2,2);
-			if(estDansGrille(c))
-			ajouteNavire(n);
+			
+			
+	
+				
 		}
 	}
 	
