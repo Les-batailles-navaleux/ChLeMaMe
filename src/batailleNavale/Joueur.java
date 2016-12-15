@@ -32,11 +32,32 @@ public abstract class Joueur {
 		}
 		
 		public boolean defense(Coordonnee c) {
-			this.grille.recoitTir(c); // prend encompte le tir
-			if (this.grille.estCoule(c)) //si coulé -> fin de partie
-				return false;
-			return true;
-		}
+			int etat = 0;
+			boolean b = false;
+			
+			if (this.grille.recoitTir(c)) {   // on interroge la grille, true si qqch a �t� touch�;..
+				if(this.grille.estTouche(c)) {
+					etat = 1;
+					b = true;
+				} else if (this.grille.estCoule(c) && !this.grille.perdu()) {
+					etat = 2; 
+					b = true;
+				} else if (this.grille.estALEau(c)) {
+					etat = 3;
+					b = true;
+				} else if(this.grille.perdu()) {
+					this.perdu();
+					adversaire.gagne();
+					b = false;
+				}	
+				b = false;
+			}
+			
+			retourDefense(c, etat);
+			adversaire.retourAttaque(c, etat);
+			
+			return b;
+		}	
 				
 		protected abstract void perdu();
 		
@@ -55,3 +76,5 @@ public abstract class Joueur {
 	}
 
 }
+
+
