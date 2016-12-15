@@ -34,11 +34,17 @@ public abstract class Joueur {
 		}
 		
 		public boolean defense(Coordonnee c) {
+			int etat;
 			if (this.grille.recoitTir(c)) {
+				etat = TOUCHE;
+				this.retourDefense(c, etat);
 				return false;
 			} else if (this.grille.estCoule(c)) {
+				etat = COULE;
 				return false;
 			}
+			etat = A_L_EAU;
+			this.retourDefense(c, etat);
 			return true;
 		}
 		
