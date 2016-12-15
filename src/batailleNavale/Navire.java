@@ -23,8 +23,8 @@ public class Navire {
 //		}
 //		
 		// la puissance ternaire en 1 ligne .. ou presque
-		this.fin = estVertical ? new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne()) : // estVertical
-								 new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1);// sinon horizontal
+		this.fin = estVertical ? new Coordonnee(this.debut.getLigne(), this.debut.getColonne() + longueur - 1): // horizontal
+								 new Coordonnee(this.debut.getLigne() + longueur-1, this.debut.getColonne()); 	// estVertical
 		
 		this.partiesTouchees = new Coordonnee[longueur];
 		this.nbTouchees = 0;
