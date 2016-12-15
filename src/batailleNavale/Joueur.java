@@ -9,15 +9,21 @@ public abstract class Joueur {
 		private String nom;
 		
 		public Joueur(GrilleNavale g, String nom) {
-			
+			this.grille = g;
+			this.nom = nom;
 		}
 		
 		public GrilleNavale getGrille() {
-			
+			return this.grille;
+		}
+		
+		public String getNom() {
+			return this.nom;
 		}
 		
 		public void jouerAvec(Joueur j) {
-			
+			this.debutAttaque();
+			j.debutAttaque();
 		}
 		
 		public void attaque(Coordonnee c) {

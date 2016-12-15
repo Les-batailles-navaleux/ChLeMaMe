@@ -259,7 +259,7 @@ public class GrilleNavale {
 
 		int[] tabTaillesNavires = { 3, 2, 4 };
 		GrilleNavale g1 = new GrilleNavale(10, tabTaillesNavires);
-		// g1.toString();
+		g1.toString();
 		Coordonnee c1 = new Coordonnee("C3");
 		Coordonnee c2 = new Coordonnee("C4"); // hors grille
 		Coordonnee c3 = new Coordonnee("C5");
