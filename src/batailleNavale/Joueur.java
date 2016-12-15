@@ -35,7 +35,7 @@ public abstract class Joueur {
 			int etat = 0;
 			boolean b = false;
 			
-			if (this.grille.recoitTir(c)) {   // on interroge la grille, true si qqch a été touché
+			if (this.grille.recoitTir(c)) {   // on interroge la grille, true si qqch a été touché;..
 				if(this.grille.estTouche(c)) {
 					etat = 1;
 					b = true;
