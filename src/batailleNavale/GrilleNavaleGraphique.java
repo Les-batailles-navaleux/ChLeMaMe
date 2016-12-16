@@ -7,7 +7,7 @@ public class GrilleNavaleGraphique extends GrilleNavale {
 	
 	public GrilleNavaleGraphique(int taille) {
 		// On initialise le 2e argument a 0 car on ne peut pas rien mettre
-		super(taille, 10);
+		super(taille, 6);
 		this.grille = new GrilleGraphique(taille);
 	}
 	

@@ -33,6 +33,7 @@ public class FenetreJoueur extends JFrame {
 
 		g.setBorder(new TitledBorder(null, "Grille de defense", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(g);
+		g.setClicActive(false); // pour griser les cases
 		
 		setTitle(nom);
 	}

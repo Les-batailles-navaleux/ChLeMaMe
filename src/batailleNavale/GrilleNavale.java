@@ -51,22 +51,17 @@ public class GrilleNavale {
 //	}
 //	
 	
-	public void placementAuto(int[] taillesNavires) {
-
-		for (int i = 0; i < taillesNavires.length; i++) {
-			// (int)Math.random()*(max + 1 - min) + min;
-			boolean direction = Math.random() < 0.5;
-//			Coordonnee al = new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
-			Coordonnee al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1)); 
-			Navire n = new Navire(al,  taillesNavires[i], direction);
-			
-			while(!ajouteNavire(n)){
-//					al = new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
-					al = new Coordonnee((int)(Math.random()*(this.taille + 1 - 1) + 1), (int)(Math.random()*(this.taille + 1 - 1) + 1));
-					direction = Math.random() < 0.5;
-					n = new Navire(al,  taillesNavires[i], direction);
-			}
-		}
+	public void placementAuto(int[] taillesNavires) {		
+		int i = 0;
+		while(i < taillesNavires.length) {
+			int nbNaviresInit = this.nbNavires;	// Nomre de navires avant la création d'un nouveau navire qui sera placé aléatoirement
+			boolean estVertical = (Math.random() < 0.5);
+			Coordonnee c = new Coordonnee((int)(Math.random() * (taille - taillesNavires[i])), (int)(Math.random() * (taille - taillesNavires[i])));
+			Navire n = new Navire(c, taillesNavires[i], estVertical);
+			this.ajouteNavire(n);
+			if(this.nbNavires > nbNaviresInit)
+				i++;
+}
 	}
 
 	/*
