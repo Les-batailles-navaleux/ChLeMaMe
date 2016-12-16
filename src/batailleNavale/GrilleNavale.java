@@ -90,7 +90,7 @@ public class GrilleNavale {
 		// Affichage des lettres
 		for (int i = 0; i < coteGrille; i++) {
 			char c = (char) (i + 'A');
-			superGrille.append(c);
+			superGrille.append("\t"+c);
 		}
 		
 		
@@ -99,68 +99,41 @@ public class GrilleNavale {
 			superGrille.append("\n"+(ligneParc+1));
 				
 			for (int colParc = 0; colParc < coteGrille; colParc++) {
-												
+				boolean dejaTire = false;
 				coordCourante = new Coordonnee(ligneParc+1, colParc+1);
 				
 				// TirRecu ? ->  oui
 				if(estDansTirsRecus(coordCourante)){
 					if (estALEau(coordCourante)) {
-						superGrille.append("o");	
+						dejaTire = true;
+						superGrille.append("\to");	
+						
 					}else if(estTouche(coordCourante)){
-						superGrille.append("X");
+						dejaTire = true;
+						superGrille.append("\tX");
 					}
 				// TirRecu ? -> non
 				} else {
-					
-					if (!estALEau(coordCourante)) {
-						superGrille.append("#");
-					} else {
-						superGrille.append(".");
+					// Sinon si on est pas dans tirReçu  
+					for (int i = 0; i < nbNavires; i++) {
+						// On parcourt le tableau des coorodnnées des bateaux
+						if(navires[i].contient(coordCourante) && dejaTire == false){
+							dejaTire = true;
+							superGrille.append("\t#");
+							break;
+							}
 					}
 					
+					if(dejaTire==false){
+						superGrille.append("\t.");
+					}
 				}
-				
-				
-				
-//				if(estTouche(coordCourante)){
-//					superGrille.append("X");
-//					System.out.println("on est rentré dans le cas X !");
-//				} 
-//				
-//				else if (!estDansTirsRecus(coordCourante) && !estALEau(coordCourante)){
-//					superGrille.append("#");
-//					System.out.println("on est rentré dans le cas # !");
-//				} 
-//				
-//				else if (estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
-//					superGrille.append("o");	
-//				}
-//				
-//				else if (!estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
-//					superGrille.append(".");
-//				}
-
 			} // end for colParc
-			
 		}	// end for ligneParc
 		
 		String s = superGrille+"";
-		
-
-
-//				} else if (estTouche(k)){ // case occupee par navire et touché
-//					System.out.print(" X ");
-//				} else if ((estDansTirsRecus(k)) && (!estTouche(k))){ // case libre mais touchee
-//					System.out.print(" O ");
-//				} else if ((!(estDansTirsRecus(k))) && (!estTouche(k))){ //case libre et non touchee
-//					System.out.print(" # ");
-//				} else { // case non libre et touchee par un bateau
-//					System.out.print(" . ");
-//				}
-
-		
 		return s;
-		}
+	}
 	
 	public boolean ajouteNavire(Navire n) {
 
@@ -322,7 +295,7 @@ public class GrilleNavale {
 		
 
 		System.out.println("PARTIE TEST DU BRO-GRAMMEUR");
-		int [] tabTaillesNaviresBro = {};
+		int [] tabTaillesNaviresBro = {2};
 		
 		GrilleNavale grilleBro = new GrilleNavale(5, tabTaillesNaviresBro);
 //		GrilleNavale grilleBro2 = new GrilleNavale(5, 1);
@@ -346,9 +319,8 @@ public class GrilleNavale {
 //		System.out.println("Tir sur une case vide N2: "+grilleBro.recoitTir(videTouche));
 		
 //		System.out.println("Tir sur une case vide N2: "+grilleBro.recoitTir(coorBro));
-		System.out.println("on ajoute un navire: " + grilleBro.ajouteNavire(navBro)+"\n");	
-		
-		System.out.println("on tir sur le bateau en C2: "+ grilleBro.recoitTir(coorTirSurBro));
+//		System.out.println("on ajoute un navire: " + grilleBro.ajouteNavire(navBro)+"\n");
+		System.out.println("on tir sur le bateau en C2: "+ grilleBro.recoitTir(coorTirSurBro)+"\n");
 		
 //		System.out.println("La grille reçoit un tir: "+ grilleBro.recoitTir(coorBro1)+"\n");
 //		System.out.println("La grille reçoit un tir: "+ grilleBro.recoitTir(coorBro2)+"\n");
@@ -358,9 +330,7 @@ public class GrilleNavale {
 		System.out.println(grilleBro.toString()+"\n");
 //		System.out.println(grilleBro2.toString()+"\n");
 		System.out.println();
-		
-		
-		System.out.println(" /*****************************************/ ");
+//		System.out.println(" /*****************************************/ ");
 				
 //		System.out.println("PARTIE TEST DES BRO-GRAMMEUSES");
 //		int[] tabTaillesNavires = { 3, 2, 4 };
