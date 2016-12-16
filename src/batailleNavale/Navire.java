@@ -160,13 +160,28 @@ public class Navire {
 		}
 	}
 
-	public boolean estTouche(Coordonnee c) {
-		if (this.contient(c)) {
-			return true;
+//	public boolean estTouche(Coordonnee c) {
+//		if (this.contient(c)) {
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	public boolean estTouche(Coordonnee c) {		// Est-ce que le tir en coordonnées c touche le navire ?
+		// On cherche a savoir si c existe dans partiesTouchees
+		for(int i = 0; i < this.nbTouchees; i++) {
+			if(this.partiesTouchees[i] != null) 
+				if(this.partiesTouchees[i].equals(c))
+					return true;
 		}
 		return false;
-	}
+}
 
+	
+//	public boolean estTouche() {
+//		return (this.nbTouchees > 0);
+//}
+	
 	public boolean estTouche() {
 		// parcourir le tableau partiesTouchees pour trouver this
 		for (int i = 0; i < partiesTouchees.length; i++) { 
