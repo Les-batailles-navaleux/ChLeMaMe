@@ -1,6 +1,6 @@
 package batailleNavale;
 
-import com.sun.prism.paint.Color;
+import java.awt.*;
 
 public class GrilleNavaleGraphique extends GrilleNavale {
 	private GrilleGraphique grille;
@@ -17,11 +17,22 @@ public class GrilleNavaleGraphique extends GrilleNavale {
 	public boolean ajouteNavire(Navire n) {
 		// on utilise le ajouteNavire de la classe mere
 	 if (super.ajouteNavire(n) == true) {
+		 this.grille.colorie(n.getDebut(), n.getFin(), Color.GREEN);
 		 // colorie green
 	 }
 		return true;
 	}
 	public boolean recoitTir(Coordonnee c) {
+		if (super.recoitTir(c) == true) {
+			// Touche
+			this.grille.colorie(c, Color.RED);
+			return true;
+		}
+		else {
+			// A l'eau
+			this.grille.colorie(c, Color.BLUE);
+			return false;
+		}
 		
 	}
 }
