@@ -11,7 +11,7 @@ public class GrilleNavale {
 		this.taille = taille;
 		
 		// nb navire = taille du tableau de navires
-		this.nbNavires = taillesNavires.length; 
+		this.nbNavires = 0;//taillesNavires.length; 
 
 		// initialisation des tirs reçus à 0
 		this.nbTirsRecus = 0; 
@@ -20,7 +20,7 @@ public class GrilleNavale {
 		this.tirsRecus = new Coordonnee[taille*taille]; 
 		// this.tirsRecus = new Coordonnee[(taille*taille)]; // Nb de coups
 		// possible = taille de la grille
-		this.navires = new Navire[this.nbNavires];
+		this.navires = new Navire[taillesNavires.length];
 	
 		
 		// commenter si on ne veut pas du placement automatique
@@ -130,37 +130,35 @@ public class GrilleNavale {
 	}
 	
 	public boolean ajouteNavire(Navire n) {
-
+		System.out.println(n);
 //
 //		Navire n2 = new Navire[navires.length + 1];
 		
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille :nop
-			System.out.println("Erreur de coordonnées: le navire sort de la grille !");
 			return false;
-		}
-		else{
+		}else{
 			if(this.nbNavires==0){
 				this.navires[0]=n;
 				this.nbNavires+=1;
-			}
-			else{
+			}else{
+				
 				System.out.println("nbnavire:"+ this.nbNavires);
 				System.out.println("case:"+ this.navires[0]);
 				
 				for (int i = 0; i < this.nbNavires; i++) { // si touche ou chevauche: nop
+					System.out.println("nBnavires: "+ nbNavires);
+					System.out.println("navires: "+ navires[i]);
 					if((this.navires[i].chevauche(n) || this.navires[i].touche(n))){
 						
-						System.out.println("Erreur de coordonnées: le navire touche ou chevauche !");
+//						throw new Exception("Erreur de coordonnées: le navire touche ou chevauche !");
 						return false;
 						}
 					}
-				
-				
-				
+					
 				navires[nbNavires] = n;
 				nbNavires++;
 		}
-		System.out.println("Le navire '" +this.nbNavires+ "' a été ajouté !");
+//		System.out.println("Le navire '" +this.nbNavires+ "' a été ajouté !");
 		return true;
 	}
 	}
@@ -295,7 +293,7 @@ public class GrilleNavale {
 		Navire navBro = new Navire(coorBro, 2, false);
 		
 		
-		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
+//		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
 //		System.out.println("la coordonnée estDansGrille? " + grilleBro2.estDansGrille(videTouche)+"\n");
 		
 		
