@@ -66,14 +66,14 @@ public class JoueurTexte extends Joueur {
 		//JoueurTexte j = new JoueurTexte(g, "DBardou");
 		//j.debutAttaque();
 		
-		int[] tN = {1};
-		GrilleNavale g1 = new GrilleNavale(10, tN);
+		
+		GrilleNavale g1 = new GrilleNavale(10, 1);
 		Coordonnee a1 = new Coordonnee("D4");
 		Navire n1 = new Navire(a1, 4, true);
 		g1.ajouteNavire(n1);
 		System.out.println("Grille joueur 1 : \n" + g1 + "\n");
 		
-		GrilleNavale g2 = new GrilleNavale(10, tN);
+		GrilleNavale g2 = new GrilleNavale(10, 1);
 		Coordonnee a2 = new Coordonnee("A3");
 		Navire n2 = new Navire(a2, 3, true);
 		g2.ajouteNavire(n2);

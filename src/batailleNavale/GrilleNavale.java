@@ -130,10 +130,8 @@ public class GrilleNavale {
 	}
 	
 	public boolean ajouteNavire(Navire n) {
-		System.out.println(n);
-//
-//		Navire n2 = new Navire[navires.length + 1];
-		
+
+
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille :nop
 			return false;
 		}else{
