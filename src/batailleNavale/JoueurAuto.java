@@ -46,25 +46,33 @@ public class JoueurAuto extends Joueur {
 	}
 
 	public static void main(String[] args) {
+		
+		
 		//Grille joueur auto
 		int[] tailleNav = {1};
-		GrilleNavale gj1 = new GrilleNavale(10, tailleNav);
-		Coordonnee c = new Coordonnee(3,3);
+		
+		Coordonnee c = new Coordonnee("C3"); //C3
 		Navire n = new Navire(c, 2, true);
+//		GrilleNavale gj1 = new GrilleNavale(10, 1);
+		GrilleNavale gj1 = new GrilleNavale(10, tailleNav);
+		
 		gj1.ajouteNavire(n);
+		
 		System.out.println("Grille java : \n" + gj1 + "\n");
 		Joueur java = new JoueurAuto(gj1, "java");
 
 		// Grille joueur texte
-		GrilleNavale gj2 = new GrilleNavale(10, tailleNav);
-		Coordonnee c0 = new Coordonnee(5,5);
+		Coordonnee c0 = new Coordonnee(5,5); // E5
 		Navire n0 = new Navire(c0, 2, true);
-		gj2.ajouteNavire(n0);
-		System.out.println("Grille ruby : \n" + gj2 + "\n");
-		JoueurTexte ruby = new JoueurTexte(gj1, "ruby");
+		GrilleNavale gj2 = new GrilleNavale(10, tailleNav);
 		
-		ruby.jouerAvec(java);
-		ruby.debutAttaque();
+		gj2.ajouteNavire(n0);
+		
+		System.out.println("Grille HAumain : \n" + gj2 + "\n");
+		JoueurTexte humain = new JoueurTexte(gj1, "Humain");
+		
+		humain.jouerAvec(java);
+		humain.debutAttaque();
 	}
 }
 	
