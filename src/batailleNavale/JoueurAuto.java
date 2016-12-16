@@ -16,41 +16,37 @@ public class JoueurAuto extends Joueur {
 	}
 	
 	protected void retourAttaque(Coordonnee c, int etat) {
-		System.out.println("Grille Attaquant : \n" + this.getGrille());
-		if(etat == TOUCHE) {
-			System.out.println("tu m'as touché mais pas coulé");
+		//System.out.println("Grille Attaquant : \n" + this.getGrille());
+		 if(etat == TOUCHE) {
+			System.out.println(this.getNom() + ", tire en " + c + ": touché");
 		} else if (etat == COULE) {
-			System.out.println("tu m'as touché coulé");
+			System.out.println(this.getNom() + ", tire en " + c + ": touché coulé");
 		} else if (etat == A_L_EAU) { 
-			System.out.println("tu m'as loupé ! dans la flotte..");
+			System.out.println(this.getNom() + ", tire en " + c + ": loupé ! dans la flotte..");
 		} else {
-			System.out.println("etat: " + etat);
+			System.out.println("état: " + etat);
 		}
-		
 	}
 	
 	protected void retourDefense(Coordonnee c, int etat) {
 		System.out.println(this.getNom() + " est attaqué en " + c);
-		System.out.println("Grille de this: " + this.getGrille());
+		// System.out.println("Grille de this: \n" + this.getGrille());
 	}
 	
 	public void debutAttaque() {
 		//A quel endroit on place les bateaux ?
 		//int [] tabTaillesNavs = {2, 2, 3, 3, 4, 4};
-		//GrilleNavale mygrid = new GrilleNavale(10, tabTaillesNavs);
-		//mygrid.placementAuto(tabTaillesNavs); //grid du joueur auto avec nav placés
-        
-        // this attaque 
-        Coordonnee attaqueMilieu = new Coordonnee(5, 5);
-		System.out.println("Vas y attaque " + this.getNom() + " !");
-		Coordonnee al = new Coordonnee((int) (Math.random() * 10- 1) + 1, (int) (Math.random() * 10- 1) + 1); 
-      	while (this.getGrille().recoitTir(al)) {
+		//GrilleNavale myGrid = new GrilleNavale(10, tabTaillesNavs);
+		//myGrid.placementAuto(tabTaillesNavs); //grid du joueur auto avec nav placés
+		Coordonnee al = new Coordonnee((int) (Math.random() * 10 - 1) + 1, (int) (Math.random() * 10- 1) + 1); 
+		attaque(al);
+		if (this.getGrille().recoitTir(al)) { //nouvelles coord aleatoires
       		this.attaque(new Coordonnee((int) (Math.random() * 10 - 1) + 1, (int) (Math.random() * 10 - 1)  + 1));
-      	}
+      	} 
 	}
 
 	public static void main(String[] args) {
-		//Grille + joueur 1
+		//Grille joueur auto
 		int[] tailleNav = {1};
 		GrilleNavale gj1 = new GrilleNavale(10, tailleNav);
 		Coordonnee c = new Coordonnee(3,3);
@@ -58,17 +54,17 @@ public class JoueurAuto extends Joueur {
 		gj1.ajouteNavire(n);
 		System.out.println("Grille java : \n" + gj1 + "\n");
 		Joueur java = new JoueurAuto(gj1, "java");
-		
-		// Grille + joueur 2
+
+		// Grille joueur texte
 		GrilleNavale gj2 = new GrilleNavale(10, tailleNav);
 		Coordonnee c0 = new Coordonnee(5,5);
 		Navire n0 = new Navire(c0, 2, true);
 		gj2.ajouteNavire(n0);
 		System.out.println("Grille ruby : \n" + gj2 + "\n");
-		Joueur ruby = new JoueurAuto(gj1, "ruby");
+		JoueurTexte ruby = new JoueurTexte(gj1, "ruby");
 		
-		java.jouerAvec(ruby);
-		java.debutAttaque();
+		ruby.jouerAvec(java);
+		ruby.debutAttaque();
 	}
 }
 	
