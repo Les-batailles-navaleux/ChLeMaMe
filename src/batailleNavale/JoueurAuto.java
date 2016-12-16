@@ -31,7 +31,7 @@ public class JoueurAuto extends Joueur {
 	
 	protected void retourDefense(Coordonnee c, int etat) {
 		System.out.println(this.getNom() + " est attaqué en " + c);
-		//retourAttaque(c, etat);
+		System.out.println("Grille de this: " + this.getGrille());
 	}
 	
 	public void debutAttaque() {
@@ -45,15 +45,9 @@ public class JoueurAuto extends Joueur {
 		System.out.println("Vas y attaque " + this.getNom() + " !");
 		Coordonnee al = new Coordonnee((int) (Math.random() * 10- 1) + 1, (int) (Math.random() * 10- 1) + 1); 
       	while (this.getGrille().recoitTir(al)) {
-      		al = new Coordonnee((int) (Math.random() * 10 - 1) + 1, (int) (Math.random() * 10 - 1)  + 1);  //attaque sur une case aléatoire
+      		this.attaque(new Coordonnee((int) (Math.random() * 10 - 1) + 1, (int) (Math.random() * 10 - 1)  + 1));
       	}
-      		this.attaque(attaqueMilieu);
-      	}
-		
-        
-//		int etatInit = 0; 
-//		retourDefense(coordSaisie, etatInit);
-	
+	}
 
 	public static void main(String[] args) {
 		//Grille + joueur 1
@@ -75,9 +69,6 @@ public class JoueurAuto extends Joueur {
 		
 		java.jouerAvec(ruby);
 		java.debutAttaque();
-		//ruby.jouerAvec(java);
-		//java.debutAttaque();
-		//System.out.println(java.defense(c0));		
 	}
 }
 	
