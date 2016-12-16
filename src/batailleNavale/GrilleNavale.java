@@ -163,18 +163,13 @@ public class GrilleNavale {
 		}
 	
 	public boolean ajouteNavire(Navire n) {
-
-
 		Navire[] n2 = new Navire[navires.length + 1];
-	
 		for (int i = 0; i < this.navires.length; i++) { // si touche ou chevauche: nop
 			if((this.navires[i].chevauche(n) || this.navires[i].touche(n))){
-				
 				System.out.println("Erreur de coordonnées: le navire touche ou chevauche !");
 				return false;
 				}
 			}
-		
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille :nop
 			System.out.println("Erreur de coordonnées: le navire sort de la grille !");
 			return false;
