@@ -186,6 +186,10 @@ public class BatailleNavale {
 	      JButton btnLancerLaPartie = new JButton("Lancer la partie");
 	      btnLancerLaPartie.addActionListener(new ActionListener() {
 	      	public void actionPerformed(ActionEvent e) {
+	      		JFrame d = new FenetreJoueur("Julie", 10);
+	      		d.setVisible(true);
+	      		d.pack();
+	      		f.setVisible(false);
 //	      		FenetreJoueur.getFrames();
 	      	}
 	      });
@@ -301,6 +305,7 @@ public class BatailleNavale {
 	      JTextPane textPane_1 = new JTextPane();
 	      panel_1.add(textPane_1);
 	      f.getContentPane().setLayout(groupLayout);
+	      f.pack();
 	      f.setVisible(true);
 
 	}
