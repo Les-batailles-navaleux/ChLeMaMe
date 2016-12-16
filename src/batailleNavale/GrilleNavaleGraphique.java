@@ -1,4 +1,7 @@
 package batailleNavale;
+
+import com.sun.prism.paint.Color;
+
 public class GrilleNavaleGraphique extends GrilleNavale {
 	private GrilleGraphique grille;
 	
@@ -12,6 +15,11 @@ public class GrilleNavaleGraphique extends GrilleNavale {
 	}
 	
 	public boolean ajouteNavire(Navire n) {
+		// on utilise le ajouteNavire de la classe mere
+	 if (super.ajouteNavire(n) == true) {
+		 // colorie green
+	 }
+		return true;
 	}
 	public boolean recoitTir(Coordonnee c) {
 		
