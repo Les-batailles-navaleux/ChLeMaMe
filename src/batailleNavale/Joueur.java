@@ -41,7 +41,7 @@ public abstract class Joueur {
 		if (this.grille.estTouche(c)) {
 			etat = TOUCHE;
 			b = true;
-		} else if (this.grille.estCoule(c) && !this.grille.perdu()) {
+		} else if (this.grille.estCoule(c)) { //&& !this.grille.perdu()) {
 			etat = COULE;
 			b = true;
 		} else if (this.grille.estALEau(c)) {
@@ -52,7 +52,6 @@ public abstract class Joueur {
 			adversaire.gagne();
 			b = false;
 		}
-		// b = false;
 
 		retourDefense(c, etat);
 		adversaire.retourAttaque(c, etat);
