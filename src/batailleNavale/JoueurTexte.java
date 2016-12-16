@@ -67,8 +67,8 @@ public class JoueurTexte extends Joueur {
 		Navire n1 = new Navire(a1, 4, true);
 		g.ajouteNavire(n1);
 		JoueurTexte j = new JoueurTexte(g, "DBardou");
-		
 		j.debutAttaque();
+		//blah
 		
 	}
 
