@@ -31,10 +31,12 @@ public class GrilleNavale {
 		this.taille = taille;
 		this.navires = new Navire[nbNavires];
 		this.nbNavires = 0;
-		// mona: besoin pour methode tirs
-		this.tirsRecus = new Coordonnee[taille*taille]; 
-		this.nbTirsRecus = 0;
-		
+		this.tirsRecus = new Coordonnee[0];
+
+		// antoine: besoin pour methode tirs
+		//this.tirsRecus = new Coordonnee[taille*taille]; 
+		//this.nbTirsRecus = 0;
+
 	}
 	
 //	public void placementAuto(int[] taillesNavires) {

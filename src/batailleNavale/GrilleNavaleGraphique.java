@@ -7,7 +7,8 @@ public class GrilleNavaleGraphique extends GrilleNavale {
 	
 	public GrilleNavaleGraphique(int taille) {
 		// On initialise le 2e argument a 0 car on ne peut pas rien mettre
-		super(taille, 0);
+		super(taille, 10);
+		this.grille = new GrilleGraphique(taille);
 	}
 	
 	public GrilleGraphique getGrilleGraphique() {
@@ -16,14 +17,14 @@ public class GrilleNavaleGraphique extends GrilleNavale {
 	
 	public boolean ajouteNavire(Navire n) {
 		// on utilise le ajouteNavire de la classe mere
-	 if (super.ajouteNavire(n) == true) {
+	 if (super.ajouteNavire(n)) {
 		 this.grille.colorie(n.getDebut(), n.getFin(), Color.GREEN);
 		 // colorie green
 	 }
-		return true;
+		return false;
 	}
 	public boolean recoitTir(Coordonnee c) {
-		if (super.recoitTir(c) == true) {
+		if (super.recoitTir(c)) {
 			// Touche
 			this.grille.colorie(c, Color.RED);
 			return true;
