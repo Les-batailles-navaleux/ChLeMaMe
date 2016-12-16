@@ -38,12 +38,12 @@ public abstract class Joueur {
 
 		this.grille.recoitTir(c); // on interroge la grille, true si qqch a
 									// �t� touch�;..
-		
+
 		if (this.grille.perdu()) {
 			this.perdu();
 			adversaire.gagne();
 			b = false;
-		}else if (this.grille.estTouche(c)) {
+		} else if (this.grille.estTouche(c)) {
 			etat = TOUCHE;
 			b = true;
 		} else if (this.grille.estCoule(c)) { //&& !this.grille.perdu()) {

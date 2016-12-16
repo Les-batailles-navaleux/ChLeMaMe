@@ -29,9 +29,18 @@ public class JoueurTexte extends Joueur {
 //			System.out.println("Vous etes a l'eau en " + c + ".");
 //		else if (this.getGrille().perdu())
 //			this.gagne();
+		 if(etat == TOUCHE) {
+				System.out.println("    " + this.getNom() + " tire en " + c + ": touché");
+			} else if (etat == COULE) {
+				System.out.println("   " + this.getNom() + " tire en " + c + ": touché coulé");
+			} else if (etat == A_L_EAU) { 
+				System.out.println("   " + this.getNom() + " tire en " + c + ": loupé...");
+			} else {
+				System.out.println("état: " + etat);
+			}
 		
-		System.out.println("Votre tir en " + c + " est " + etat + ".");
-		System.out.println("Grille Attaquant : \n" + this.getGrille());
+		//System.out.println("Votre tir en " + c + " est " + etat + ".");
+		//System.out.println("Grille Attaquant : \n" + this.getGrille());
 	}
 
 	protected void retourDefense(Coordonnee c, int etat) {
@@ -44,15 +53,16 @@ public class JoueurTexte extends Joueur {
 //		else if (this.getGrille().perdu())
 //			this.perdu();
 		
-		System.out.println("Le tir de votre adversaire en " + c + " est " + etat + ".");
-		System.out.println("Grille Attaqu� : \n" + this.getGrille());
+		//System.out.println("Le tir de votre adversaire en " + c + " est " + etat + ".");
+		//System.out.println("Grille Attaqu� : \n" + this.getGrille());
+		System.out.println("   " + this.getNom() + ", votre adversaire a tiré en " + c);
 	}
 
 	public void debutAttaque() {	
-		System.out.println("A votre tour d'attaquer ! " + this.getNom());
+		System.out.println("   A votre tour d'attaquer " + this.getNom() + " !");
 		
 		sc = new Scanner(System.in);
-		System.out.println("Saisir une coordonnee a attaquer : ");
+		System.out.println("   Saisir une coordonnee a attaquer : ");
 		String attaque = sc.next();
 		Coordonnee attack = new Coordonnee(attaque); 
 		
