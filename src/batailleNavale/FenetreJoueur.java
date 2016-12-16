@@ -18,15 +18,17 @@ public class FenetreJoueur extends JFrame {
 	}
 	
 	public FenetreJoueur(String nom, int taille) {
-	
+		grilleDefense.placementAuto();
+		this.nom = nom;
+		this.taille = taille;
 	} 
 	
 	public GrilleGraphique getGrilleTirs() {
-	
+		return grilleTirs;
 	}
 	
 	public GrilleNavaleGraphique getGrilleDefense() {
-	
+		return grilleDefense;
 	}
 	
 	public static void main(String[] args) {

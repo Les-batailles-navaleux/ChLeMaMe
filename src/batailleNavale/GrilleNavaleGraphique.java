@@ -1,13 +1,13 @@
 package batailleNavale;
 public class GrilleNavaleGraphique extends GrilleNavale {
-	private GrilleNavaleGraphique grille;
+	private GrilleGraphique grille;
 	
 	public GrilleNavaleGraphique(int taille) {
 		// On initialise le 2e argument a 0 car on ne peut pas rien mettre
 		super(taille, 0);
 	}
 	
-	public GrilleNavaleGraphique getGrilleGraphique() {
+	public GrilleGraphique getGrilleGraphique() {
 		return this.grille;
 	}
 	

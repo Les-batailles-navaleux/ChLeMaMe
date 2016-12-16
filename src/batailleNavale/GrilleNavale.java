@@ -131,9 +131,6 @@ public class GrilleNavale {
 	
 	public boolean ajouteNavire(Navire n) {
 
-//
-//		Navire n2 = new Navire[navires.length + 1];
-		
 		if (!estDansGrille(n.getDebut()) || !estDansGrille(n.getFin())) { //si n hors grille :nop
 			System.out.println("Erreur de coordonnées: le navire sort de la grille !");
 			return false;
