@@ -23,6 +23,7 @@ public abstract class Joueur {
 		
 		public void jouerAvec(Joueur j) {
 			this.adversaire = j;
+			j.adversaire = this;
 		}
 		
 		public void attaque(Coordonnee c) {
@@ -37,13 +38,13 @@ public abstract class Joueur {
 			
 			if (this.grille.recoitTir(c)) {   // on interroge la grille, true si qqch a �t� touch�;..
 				if(this.grille.estTouche(c)) {
-					etat = 1;
+					etat = TOUCHE;
 					b = true;
 				} else if (this.grille.estCoule(c) && !this.grille.perdu()) {
-					etat = 2; 
+					etat = COULE; 
 					b = true;
 				} else if (this.grille.estALEau(c)) {
-					etat = 3;
+					etat = A_L_EAU;
 					b = true;
 				} else if(this.grille.perdu()) {
 					this.perdu();
@@ -55,7 +56,7 @@ public abstract class Joueur {
 			
 			retourDefense(c, etat);
 			adversaire.retourAttaque(c, etat);
-			
+			retourAttaque(c, etat);
 			return b;
 		}	
 				
