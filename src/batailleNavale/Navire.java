@@ -205,9 +205,9 @@ public class Navire {
 			return false;
 		}
 		else if (this.debut.getColonne() == this.fin.getColonne()) {
-			System.out.println("Le bateau est vertical");
+			//System.out.println("Le bateau est vertical");
 			int longueur = this.fin.getLigne() - this.debut.getLigne() + 1;
-			if (partiesTouchees.length == longueur) {
+			if (nbTouchees == longueur) {
 				return true;
 			}
 			return false;
