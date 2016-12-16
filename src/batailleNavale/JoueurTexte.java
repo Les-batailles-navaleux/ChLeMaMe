@@ -14,11 +14,11 @@ public class JoueurTexte extends Joueur {
 	}
 
 	protected void perdu() {
-		System.out.println("Vous avez perdu !");
+		System.out.println("Vous avez perdu !" + getNom());
 	}
 
 	protected void gagne() {
-		System.out.println("Vous avez gagne !");
+		System.out.println("Vous avez gagne !" + getNom());
 	}	
 	
 	protected void retourAttaque(Coordonnee c, int etat) {

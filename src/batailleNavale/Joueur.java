@@ -38,7 +38,12 @@ public abstract class Joueur {
 
 		this.grille.recoitTir(c); // on interroge la grille, true si qqch a
 									// �t� touch�;..
-		if (this.grille.estTouche(c)) {
+		
+		if (this.grille.perdu()) {
+			this.perdu();
+			adversaire.gagne();
+			b = false;
+		}else if (this.grille.estTouche(c)) {
 			etat = TOUCHE;
 			b = true;
 		} else if (this.grille.estCoule(c)) { //&& !this.grille.perdu()) {
@@ -47,11 +52,7 @@ public abstract class Joueur {
 		} else if (this.grille.estALEau(c)) {
 			etat = A_L_EAU;
 			b = true;
-		} else if (this.grille.perdu()) {
-			this.perdu();
-			adversaire.gagne();
-			b = false;
-		}
+		} 
 
 		retourDefense(c, etat);
 		adversaire.retourAttaque(c, etat);
