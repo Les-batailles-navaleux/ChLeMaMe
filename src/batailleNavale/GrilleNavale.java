@@ -167,19 +167,6 @@ public class GrilleNavale {
 	}
 	
 
-//=======
-//	public void placementAuto(int[] taillesNavires) {
-//		for (int i = 0; i < taillesNavires.length; i++) {
-
-			// marche jusqu'à 10
-//			Coordonnee al = new Coordonnee((int) (Math.random() * (taille - taillesNavires[i]))+1,(int) (Math.random() * (taille - taillesNavires[i])+1));
-
-//			Navire n = new Navire(al, taillesNavires[i], Math.random() < 0.5);
-//			ajouteNavire(n);
-//		}
-//}
-	
-//>>>>>>> master -> Old
 	/*
 	 *  methode OK
 	 */
@@ -218,8 +205,6 @@ public class GrilleNavale {
 		}
 }
 	
-	
-
 
 	/*
 	 * Ajoute c aux tirs reçus de this si nécessaire. Retourne true si et seulement si c ne
