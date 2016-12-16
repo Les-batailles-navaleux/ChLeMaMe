@@ -31,6 +31,7 @@ public class GrilleNavale {
 		this.taille = taille;
 		this.navires = new Navire[nbNavires];
 		this.nbNavires = 0;
+		this.tirsRecus = new Coordonnee[0];
 	}
 	
 //	public void placementAuto(int[] taillesNavires) {
