@@ -86,4 +86,3 @@ public class JoueurTexte extends Joueur {
 	}
 }
 
-
