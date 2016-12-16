@@ -7,7 +7,7 @@ public class JoueurGraphique extends Joueur implements CaseClickListener {
 	private boolean tirActif;
 
 	public JoueurGraphique(GrilleNavaleGraphique grilleDefense, GrilleGraphique grilleTirs, String nom) {
-
+		super(grilleDefense, grilleTirs, nom);
 	}
 
 	private void setTirActif(boolean b) {
