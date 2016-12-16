@@ -26,14 +26,14 @@ public class FenetreJoueur extends JFrame {
 	}
 	
 	public GrilleNavaleGraphique getGrilleDefense() {
-	
+		return grilleDefense;
 	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreJoueur frame = new FenetreJoueur();
+					FenetreJoueur1 frame = new FenetreJoueur1();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
