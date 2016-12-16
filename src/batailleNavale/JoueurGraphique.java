@@ -28,7 +28,7 @@ public class JoueurGraphique extends Joueur implements CaseClickListener {
 
 	protected void retourDefense(Coordonnee c, int etat) {
 		if (etat == COULE) {
-			JOptionPane.showMessageDialog(grilleTirs, "Dommage, votre navire a été coulé en " + c);
+			JOptionPane.showMessageDialog(grilleTirs, "Dommage, votre navire a ete coulï¿½ en " + c);
 		}
 	}
 
