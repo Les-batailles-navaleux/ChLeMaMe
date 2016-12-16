@@ -194,6 +194,19 @@ public class GrilleNavale {
 	}
 	
 
+//=======
+//	public void placementAuto(int[] taillesNavires) {
+//		for (int i = 0; i < taillesNavires.length; i++) {
+
+			// marche jusqu'à 10
+//			Coordonnee al = new Coordonnee((int) (Math.random() * (taille - taillesNavires[i]))+1,(int) (Math.random() * (taille - taillesNavires[i])+1));
+
+//			Navire n = new Navire(al, taillesNavires[i], Math.random() < 0.5);
+//			ajouteNavire(n);
+//		}
+//}
+	
+//>>>>>>> master -> Old
 	/*
 	 *  methode OK
 	 */
@@ -242,7 +255,7 @@ public class GrilleNavale {
 	public boolean recoitTir(Coordonnee c) {
 		
 		//On verifie si un tir n'a pas déja été effectué a ces coordonnées
-		if(estDansTirsRecus(c))throw new IllegalArgumentException("Tir déjà effectué à cette coordonnee");
+		//if(estDansTirsRecus(c))throw new IllegalArgumentException("Tir déjà effectué à cette coordonnee");
 		if(!estDansGrille(c))throw new IllegalArgumentException("Tir en dohors de la grille");
 		
 		// si il n'a pas encore était touché en c
