@@ -100,25 +100,45 @@ public class GrilleNavale {
 				
 			for (int colParc = 0; colParc < coteGrille; colParc++) {
 												
-				coordCourante = new Coordonnee(ligneParc+1, colParc+1); 
+				coordCourante = new Coordonnee(ligneParc+1, colParc+1);
 				
-				if(estTouche(coordCourante)){
-					superGrille.append("X");
-					System.out.println("on est rentré dans le cas X !");
-				} 
-				
-				else if (!estDansTirsRecus(coordCourante) && !estALEau(coordCourante)){
-					superGrille.append("#");
-					System.out.println("on est rentré dans le cas # !");
-				} 
-				
-				else if (estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
-					superGrille.append("o");	
+				// TirRecu ? ->  oui
+				if(estDansTirsRecus(coordCourante)){
+					if (estALEau(coordCourante)) {
+						superGrille.append("o");	
+					}else if(estTouche(coordCourante)){
+						superGrille.append("X");
+					}
+				// TirRecu ? -> non
+				} else {
+					
+					if (!estALEau(coordCourante)) {
+						superGrille.append("#");
+					} else {
+						superGrille.append(".");
+					}
+					
 				}
 				
-				else if (!estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
-					superGrille.append(".");
-				}
+				
+				
+//				if(estTouche(coordCourante)){
+//					superGrille.append("X");
+//					System.out.println("on est rentré dans le cas X !");
+//				} 
+//				
+//				else if (!estDansTirsRecus(coordCourante) && !estALEau(coordCourante)){
+//					superGrille.append("#");
+//					System.out.println("on est rentré dans le cas # !");
+//				} 
+//				
+//				else if (estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
+//					superGrille.append("o");	
+//				}
+//				
+//				else if (!estDansTirsRecus(coordCourante) && estALEau(coordCourante)){
+//					superGrille.append(".");
+//				}
 
 			} // end for colParc
 			
@@ -254,7 +274,7 @@ public class GrilleNavale {
 			}
 		}
 		return false;
-}
+	}
 	
 	
 	public boolean estALEau(Coordonnee c) { // en cours
@@ -289,28 +309,33 @@ public class GrilleNavale {
 		
 
 		System.out.println("PARTIE TEST DU BRO-GRAMMEUR");
-		int [] tabTaillesNaviresBro = {1,3,5};
+		int [] tabTaillesNaviresBro = {};
 		
 		GrilleNavale grilleBro = new GrilleNavale(5, tabTaillesNaviresBro);
-//		Coordonnee coorBro = new Coordonnee("B2");
-//		Coordonnee coorBro1 = new Coordonnee(1,1); //A1
-//		Coordonnee coorBro2 = new Coordonnee(2,2); //B2
-//		Coordonnee coorBro3 = new Coordonnee(4,3); //D3
+//		GrilleNavale grilleBro2 = new GrilleNavale(5, 1);
+		Coordonnee coorBro = new Coordonnee("B2");
+		Coordonnee coorTirSurBro = new Coordonnee("C2");
+		Coordonnee coorBro1 = new Coordonnee(1,1); //A1
+		Coordonnee coorBro2 = new Coordonnee(2,2); //B2
+		Coordonnee coorBro3 = new Coordonnee(4,3); //D3
 //		
-//		Coordonnee videTouche = new Coordonnee("C1"); // C2
+		Coordonnee videTouche = new Coordonnee("C1"); // C1
+		Coordonnee tirSurBro = new Coordonnee("C2");
 //		
-//		Navire navBro = new Navire(coorBro, 2, false);
-//		
-//		
-//		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
+		Navire navBro = new Navire(coorBro, 2, false);
 		
-//		System.out.println("Tir sur une case vide: "+grilleBro.recoitTir(videTouche));
+		
+		System.out.println("la coordonnée estDansGrille? " + grilleBro.estDansGrille(videTouche)+"\n");
+//		System.out.println("la coordonnée estDansGrille? " + grilleBro2.estDansGrille(videTouche)+"\n");
+		
+		
+		System.out.println("Tir sur une case vide: "+grilleBro.recoitTir(videTouche));
 //		System.out.println("Tir sur une case vide N2: "+grilleBro.recoitTir(videTouche));
 		
 //		System.out.println("Tir sur une case vide N2: "+grilleBro.recoitTir(coorBro));
-//		System.out.println("on ajoute un navire: " + grilleBro.ajouteNavire(navBro)+"\n");	
+		System.out.println("on ajoute un navire: " + grilleBro.ajouteNavire(navBro)+"\n");	
 		
-//		grilleBro.recoitTir(coorBro2);
+		System.out.println("on tir sur le bateau en C2: "+ grilleBro.recoitTir(coorTirSurBro));
 		
 //		System.out.println("La grille reçoit un tir: "+ grilleBro.recoitTir(coorBro1)+"\n");
 //		System.out.println("La grille reçoit un tir: "+ grilleBro.recoitTir(coorBro2)+"\n");
@@ -318,6 +343,7 @@ public class GrilleNavale {
 		
 		
 		System.out.println(grilleBro.toString()+"\n");
+//		System.out.println(grilleBro2.toString()+"\n");
 		System.out.println();
 		
 		
