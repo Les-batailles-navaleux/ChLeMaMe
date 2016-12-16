@@ -246,7 +246,7 @@ public class GrilleNavale {
 	public boolean recoitTir(Coordonnee c) {
 		
 		//On verifie si un tir n'a pas déja été effectué a ces coordonnées
-		if(estDansTirsRecus(c))throw new IllegalArgumentException("Tir déjà effectué à cette coordonnee");
+		//if(estDansTirsRecus(c))throw new IllegalArgumentException("Tir déjà effectué à cette coordonnee");
 		if(!estDansGrille(c))throw new IllegalArgumentException("Tir en dohors de la grille");
 		
 		// si il n'a pas encore était touché en c
