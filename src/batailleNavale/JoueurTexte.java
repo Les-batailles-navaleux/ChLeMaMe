@@ -49,7 +49,7 @@ public class JoueurTexte extends Joueur {
 	}
 
 	public void debutAttaque() {	
-		System.out.println("A votre tour d'attaquer !" + this.getNom());
+		System.out.println("A votre tour d'attaquer ! " + this.getNom());
 		
 		sc = new Scanner(System.in);
 		System.out.println("Saisir une coordonnee a attaquer : ");
@@ -81,7 +81,6 @@ public class JoueurTexte extends Joueur {
 		Joueur j1 = new JoueurTexte(g1, "Kris");
 		Joueur j2 = new JoueurTexte(g2, "Mik");
 		j1.jouerAvec(j2);
-		
 		j1.debutAttaque();
 	}
 }
