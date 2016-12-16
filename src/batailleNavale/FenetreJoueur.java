@@ -20,6 +20,8 @@ public class FenetreJoueur extends JFrame {
 	public FenetreJoueur(String nom, int taille) {
 		int[] navires = {4, 4, 3, 3, 2, 2};
 		grilleDefense.placementAuto(navires);
+		GrilleGraphique g = new GrilleGraphique(taille);
+		JoueurTexte j = new JoueurTexte(grilleDefense, nom);
 	} 
 	
 	public GrilleGraphique getGrilleTirs() {
