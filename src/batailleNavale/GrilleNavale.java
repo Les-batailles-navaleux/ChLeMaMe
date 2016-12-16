@@ -31,6 +31,10 @@ public class GrilleNavale {
 		this.taille = taille;
 		this.navires = new Navire[nbNavires];
 		this.nbNavires = 0;
+		// mona: besoin pour methode tirs
+		this.tirsRecus = new Coordonnee[taille*taille]; 
+		this.nbTirsRecus = 0;
+		
 	}
 	
 //	public void placementAuto(int[] taillesNavires) {
@@ -184,22 +188,26 @@ public class GrilleNavale {
 	
 	
 	private boolean ajouteDansTirsRecus(Coordonnee c) {
-		if (estDansTirsRecus(c)) {
-			return false;
-		} else {
-			// creation tableau plus grand
-			Coordonnee[] tabPlusC = new Coordonnee[tirsRecus.length + 1]; 
-			int i;
-			
-			for (i = 0; i < nbTirsRecus; i++) {
-				tabPlusC[i] = tirsRecus[i]; // recopie de l'ancien tableau
-			}
 		
-			tabPlusC[i] = c; // insere nouveau navire
-			tirsRecus = tabPlusC; // reassigne le nv tableau à l'ancien
-			nbTirsRecus++;
-			return true;
+		
+		// verifier que c n'est pas déja dans tirs recus
+		if (!estDansTirsRecus(c)) {		
+			/*Coordonnee[] tabTmp = new Coordonnee[nbTirsRecus+1];
+			
+			System.out.println();
+			
+			for(int i = 0; i < nbTirsRecus; i++){
+				tabTmp[i] = this.tirsRecus[i];
+			}
+			this.tirsRecus = tabTmp;
+			*/
+			this.tirsRecus[nbTirsRecus] = c;
+			nbTirsRecus+=1;
+			return true; // this est modifié, on renvoie true
+		}else{
+			return false;
 		}
+		
 }
 	
 
