@@ -19,6 +19,8 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BatailleNavale {
 	private static JTextField textField;
@@ -182,6 +184,11 @@ public class BatailleNavale {
 	      panel_10.add(textPane_23);
 	      
 	      JButton btnLancerLaPartie = new JButton("Lancer la partie");
+	      btnLancerLaPartie.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+//	      		FenetreJoueur.getFrames();
+	      	}
+	      });
 	      btnLancerLaPartie.setBackground(new Color(224, 255, 255));
 	      btnLancerLaPartie.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	      
