@@ -189,24 +189,13 @@ public class GrilleNavale {
 	
 	private boolean ajouteDansTirsRecus(Coordonnee c) {
 		
-		
-		// verifier que c n'est pas déja dans tirs recus
+
 		if (!estDansTirsRecus(c)) {		
-			/*Coordonnee[] tabTmp = new Coordonnee[nbTirsRecus+1];
-			
-			System.out.println();
-			
-			for(int i = 0; i < nbTirsRecus; i++){
-				tabTmp[i] = this.tirsRecus[i];
-			}
-			this.tirsRecus = tabTmp;
-			*/
 			this.tirsRecus[nbTirsRecus] = c;
 			nbTirsRecus+=1;
 			return true; // this est modifié, on renvoie true
-		}else{
-			return false;
 		}
+			return false;
 		
 }
 	
